@@ -4,36 +4,50 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class StartGui extends JPanel {
+public class StartPanel extends JPanel {
 
     GridBagConstraints grid = new GridBagConstraints();
+    
+    public static JPanel startPanel;
+    public static HomePanel homePanel;
+    
+    public static EndPanel endPanel;
 
-    public StartGui() {
-
-        JPanel indexPanel = new JPanel();
-        indexPanel.setLayout(new GridBagLayout());
-        indexPanel.setOpaque(false);
+    public StartPanel() {
+     
+        homePanel = new HomePanel();
+        add(homePanel);
+        homePanel.setVisible(false);
+        
+        endPanel = new EndPanel();
+        add(endPanel);
+        endPanel.setVisible(false);
+        
+        
+        
+        startPanel = new JPanel();
+        startPanel.setLayout(new GridBagLayout());
+        startPanel.setOpaque(false);
         setOpaque(false);
-        indexPanel.setPreferredSize(new Dimension(525, 480));
-        this.add(indexPanel);
+        startPanel.setPreferredSize(new Dimension(525, 480));
+        this.add(startPanel);
 
         //Title Label 
         JLabel titleLabel = new JLabel("-Welcome To Our Tour Booking System-");
         grid.gridx = 1;
         grid.gridy = 1;
-        indexPanel.add(titleLabel, grid);
+        startPanel.add(titleLabel, grid);
 
         titleLabel.setFont(new java.awt.Font("Kannada MN", 1, 24));
         titleLabel.setForeground(new java.awt.Color(0, 0, 0));
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        // add panel for bottom buttons
         JPanel btnPanel1 = new JPanel();
         btnPanel1.setLayout(new FlowLayout());
         btnPanel1.setOpaque(false);
@@ -43,25 +57,27 @@ public class StartGui extends JPanel {
         JButton bookingBtn = new JButton(bookingimg);
         bookingBtn.setBorderPainted(false);
         btnPanel1.add(bookingBtn);
-        bookingBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Booking");
-            }
+        
+        // add listener
+        bookingBtn.addActionListener(e -> {
+            startPanel.setVisible(false);
+            StartPanel.homePanel.setVisible(true);
         });
-
+        
+        
         // Receipt Button
         ImageIcon recimg = new ImageIcon("./resources/image/recipt.png");
         JButton recieptBtn = new JButton(recimg);
         recieptBtn.setBorderPainted(false);
         btnPanel1.add(recieptBtn);
-        recieptBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Receipt");
-            }
+        
+        // add listener
+        recieptBtn.addActionListener(e -> {
+            startPanel.setVisible(false);
+            
         });
-
+        
+        // add panel for bottom buttons
         JPanel btnPanel2 = new JPanel();
         btnPanel2.setLayout(new FlowLayout());
         btnPanel2.setOpaque(false);
@@ -71,23 +87,32 @@ public class StartGui extends JPanel {
         JButton logBtn = new JButton(logimg);
         logBtn.setBorderPainted(false);
         btnPanel2.add(logBtn);
-        logBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Log");
-            }
+        
+        // add listener
+        logBtn.addActionListener(e -> {
+            startPanel.setVisible(false);
+        });
+        
+        // Quit Button
+        ImageIcon quitimg = new ImageIcon("./resources/image/quit.png");
+        JButton quitBtn = new JButton(quitimg);
+        quitBtn.setBorderPainted(false);
+        btnPanel2.add(quitBtn);
+        
+        // add listener
+        quitBtn.addActionListener(e -> {
+            startPanel.setVisible(false);
+            StartPanel.endPanel.setVisible(true);
         });
 
         grid.gridx = 1;
         grid.gridy = 2;
-        indexPanel.add(btnPanel1, grid);
+        startPanel.add(btnPanel1, grid);
 
         grid.gridx = 1;
         grid.gridy = 3;
-        indexPanel.add(btnPanel2, grid);
+        startPanel.add(btnPanel2, grid);
     }
 }
 
 
-//HomePanel hpgui = new HomePanel();
-       // bkPanel.add(hpgui);

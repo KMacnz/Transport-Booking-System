@@ -19,7 +19,7 @@ public class BookSysGui extends JFrame {
         this.add(bkPanel);
         bkPanel.setBackground(new java.awt.Color(200, 255, 255));
        
-        StartGui startGui = new StartGui();
+        StartPanel startGui = new StartPanel();
         bkPanel.add(startGui);
     }
 

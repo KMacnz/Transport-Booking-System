@@ -38,7 +38,7 @@ public class HomePanel extends JPanel {
         JLabel vehicleLabel = new JLabel("-Choose Your Vehicle Type-");
         grid.gridx = 1;
         grid.gridy = 2;
-        grid.ipady = 80;
+        grid.ipady = 25;
         homePanel.add(vehicleLabel, grid);
         vehicleLabel.setFont(new java.awt.Font("Kannada MN", 0, 18));
         vehicleLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -84,8 +84,27 @@ public class HomePanel extends JPanel {
             }
         });
 
+        JPanel btnPanel2 = new JPanel();
+        btnPanel2.setOpaque(false);
+
+        // Back Button
+        ImageIcon backimg = new ImageIcon("./resources/image/back.png");
+        JButton backBtn = new JButton(backimg);
+        backBtn.setBorderPainted(false);
+        btnPanel2.add(backBtn);
+        // add listener
+        backBtn.addActionListener(e -> {
+            StartPanel.homePanel.setVisible(false);
+            StartPanel.startPanel.setVisible(true);
+        });
+
         grid.gridx = 1;
         grid.gridy = 3;
         homePanel.add(btnPanel, grid);
+
+        grid.gridx = 1;
+        grid.gridy = 4;
+        homePanel.add(btnPanel2, grid);
+
     }
 }

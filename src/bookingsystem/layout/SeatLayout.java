@@ -83,6 +83,10 @@ public class SeatLayout {
 
         return finalText;
     }
+    
+    public void toGui() {
+        
+    }
 
     // get method for seats
     public Seat[][] getSeats() {

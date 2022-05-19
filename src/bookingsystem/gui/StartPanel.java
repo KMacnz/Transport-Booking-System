@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class StartPanel extends JPanel {
 
@@ -54,8 +55,10 @@ public class StartPanel extends JPanel {
 
         // Booking Button
         ImageIcon bookingimg = new ImageIcon("./resources/image/booking.png");
-        JButton bookingBtn = new JButton(bookingimg);
+        JButton bookingBtn = new JButton("Book Here", bookingimg);
         bookingBtn.setBorderPainted(false);
+        bookingBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        bookingBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         btnPanel1.add(bookingBtn);
         
         // add listener
@@ -67,8 +70,10 @@ public class StartPanel extends JPanel {
         
         // Receipt Button
         ImageIcon recimg = new ImageIcon("./resources/image/recipt.png");
-        JButton recieptBtn = new JButton(recimg);
+        JButton recieptBtn = new JButton("Get Previous Receipt", recimg);
         recieptBtn.setBorderPainted(false);
+        recieptBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        recieptBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         btnPanel1.add(recieptBtn);
         
         // add listener
@@ -84,8 +89,10 @@ public class StartPanel extends JPanel {
 
         // Log Button
         ImageIcon logimg = new ImageIcon("./resources/image/logs.png");
-        JButton logBtn = new JButton(logimg);
+        JButton logBtn = new JButton("View Logs", logimg);
         logBtn.setBorderPainted(false);
+        logBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        logBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         btnPanel2.add(logBtn);
         
         // add listener
@@ -95,8 +102,10 @@ public class StartPanel extends JPanel {
         
         // Quit Button
         ImageIcon quitimg = new ImageIcon("./resources/image/quit.png");
-        JButton quitBtn = new JButton(quitimg);
+        JButton quitBtn = new JButton("Quit", quitimg);
         quitBtn.setBorderPainted(false);
+        quitBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        quitBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         btnPanel2.add(quitBtn);
         
         // add listener

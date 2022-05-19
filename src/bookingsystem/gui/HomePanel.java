@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class HomePanel extends JPanel {
 
@@ -50,8 +51,10 @@ public class HomePanel extends JPanel {
 
         // Boat Button
         ImageIcon boatimg = new ImageIcon("./resources/image/boat.png");
-        JButton boatBtn = new JButton(boatimg);
+        JButton boatBtn = new JButton("Boat", boatimg);
         boatBtn.setBorderPainted(false);
+        boatBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        boatBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         btnPanel.add(boatBtn);
         boatBtn.addActionListener(new ActionListener() {
             @Override
@@ -62,8 +65,10 @@ public class HomePanel extends JPanel {
 
         // Bus Button
         ImageIcon busimg = new ImageIcon("./resources/image/bus.png");
-        JButton busBtn = new JButton(busimg);
+        JButton busBtn = new JButton("Bus", busimg);
         busBtn.setBorderPainted(false);
+        busBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        busBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         btnPanel.add(busBtn);
         busBtn.addActionListener(new ActionListener() {
             @Override
@@ -74,8 +79,10 @@ public class HomePanel extends JPanel {
 
         // Tram Button
         ImageIcon tramimg = new ImageIcon("./resources/image/tram.png");
-        JButton tramBtn = new JButton(tramimg);
+        JButton tramBtn = new JButton("Tram", tramimg);
         tramBtn.setBorderPainted(false);
+        tramBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        tramBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         btnPanel.add(tramBtn);
         tramBtn.addActionListener(new ActionListener() {
             @Override

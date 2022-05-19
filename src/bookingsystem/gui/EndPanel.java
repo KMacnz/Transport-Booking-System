@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class EndPanel extends JPanel {
 
@@ -38,7 +39,9 @@ public class EndPanel extends JPanel {
 
         // Save Button
         ImageIcon saveimg = new ImageIcon("./resources/image/save.png");
-        JButton saveBtn = new JButton(saveimg);
+        JButton saveBtn = new JButton("Save Booking", saveimg);
+        saveBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        saveBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         saveBtn.setBorderPainted(false);
         btnPanel.add(saveBtn);
 
@@ -57,7 +60,9 @@ public class EndPanel extends JPanel {
 
         // Quit Button
         ImageIcon quitimg = new ImageIcon("./resources/image/noSave.png");
-        JButton noSaveBtn = new JButton(quitimg);
+        JButton noSaveBtn = new JButton("Quit", quitimg);
+        noSaveBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        noSaveBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         noSaveBtn.setBorderPainted(false);
         btnPanel.add(noSaveBtn);
 

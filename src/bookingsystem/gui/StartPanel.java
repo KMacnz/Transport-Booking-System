@@ -4,33 +4,27 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 
 public class StartPanel extends JPanel {
 
     GridBagConstraints grid = new GridBagConstraints();
-    
+
     public static JPanel startPanel;
     public static HomePanel homePanel;
-    
+
     public static EndPanel endPanel;
 
     public StartPanel() {
-     
+
         homePanel = new HomePanel();
         add(homePanel);
         homePanel.setVisible(false);
-        
+
         endPanel = new EndPanel();
         add(endPanel);
         endPanel.setVisible(false);
-        
-        
-        
+
         startPanel = new JPanel();
         startPanel.setLayout(new GridBagLayout());
         startPanel.setOpaque(false);
@@ -60,14 +54,13 @@ public class StartPanel extends JPanel {
         bookingBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
         bookingBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         btnPanel1.add(bookingBtn);
-        
+
         // add listener
         bookingBtn.addActionListener(e -> {
             startPanel.setVisible(false);
             StartPanel.homePanel.setVisible(true);
         });
-        
-        
+
         // Receipt Button
         ImageIcon recimg = new ImageIcon("./resources/image/recipt.png");
         JButton recieptBtn = new JButton("Get Previous Receipt", recimg);
@@ -75,13 +68,13 @@ public class StartPanel extends JPanel {
         recieptBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
         recieptBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         btnPanel1.add(recieptBtn);
-        
+
         // add listener
         recieptBtn.addActionListener(e -> {
             startPanel.setVisible(false);
-            
+
         });
-        
+
         // add panel for bottom buttons
         JPanel btnPanel2 = new JPanel();
         btnPanel2.setLayout(new FlowLayout());
@@ -94,12 +87,12 @@ public class StartPanel extends JPanel {
         logBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
         logBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         btnPanel2.add(logBtn);
-        
+
         // add listener
         logBtn.addActionListener(e -> {
             startPanel.setVisible(false);
         });
-        
+
         // Quit Button
         ImageIcon quitimg = new ImageIcon("./resources/image/quit.png");
         JButton quitBtn = new JButton("Quit", quitimg);
@@ -107,7 +100,7 @@ public class StartPanel extends JPanel {
         quitBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
         quitBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         btnPanel2.add(quitBtn);
-        
+
         // add listener
         quitBtn.addActionListener(e -> {
             startPanel.setVisible(false);
@@ -123,5 +116,3 @@ public class StartPanel extends JPanel {
         startPanel.add(btnPanel2, grid);
     }
 }
-
-

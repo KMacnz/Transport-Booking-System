@@ -1,6 +1,5 @@
 package bookingsystem.gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -12,11 +11,10 @@ public class BusBookingPanel extends JPanel {
 
     private final DrawPanel drawPanel;
     public JButton[][] eachSeat;
-    GridBagConstraints grid = new GridBagConstraints();
-    public JTextArea seatTxtArea;
+    private final GridBagConstraints grid = new GridBagConstraints();
+    public JTextField seatTxtFld;
 
     public BusBookingPanel() {
-        super(new GridBagLayout());
         drawPanel = new DrawPanel();
 
         // repaint the panel
@@ -29,48 +27,51 @@ public class BusBookingPanel extends JPanel {
                 eachSeat[i][j] = new JButton();
                 drawPanel.add(eachSeat[i][j]);
 
-                String a = "Seat: (" + String.valueOf(new Character((char) (65 + i))) + ", " + (j + 1) + ")";
+                String a = "Seat: (" + String.valueOf(((char) (65 + i))) + ", " + (j + 1) + ")";
                 eachSeat[i][j].addActionListener(e -> {
-                    seatTxtArea.setText(a);
+                    seatTxtFld.setText(a);
                 });
             }
         }
 
-        JPanel endPanel = new JPanel();
+        JPanel endPanel = new JPanel(new GridBagLayout());
         JPanel seatPanel = new JPanel();
         seatPanel.setLayout(new FlowLayout());
+        super.add(endPanel);
 
         //Bus Label 
         JLabel busLabel = new JLabel("Choose your Seats");
         grid.gridx = 1;
         grid.gridy = 1;
+        grid.ipady = 50;
         endPanel.add(busLabel, grid);
-        super.add(endPanel);
 
         busLabel.setFont(new java.awt.Font("Kannada MN", 1, 24));
         busLabel.setForeground(new java.awt.Color(0, 0, 0));
         busLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         //Seat Text Area 
-        seatTxtArea = new JTextArea();
-        seatTxtArea.setEditable(false);
-        seatTxtArea.setFont(new java.awt.Font("Monospaced", 0, 15));
-        seatTxtArea.setText("OWO");
-        seatTxtArea.setPreferredSize(new Dimension(126, 254));
+        seatTxtFld = new JTextField();
+        seatTxtFld.setEditable(false);
+        seatTxtFld.setFont(new java.awt.Font("Monospaced", 0, 15));
+        seatTxtFld.setText("Seat:");
+        seatTxtFld.setPreferredSize(new Dimension(175, 100));
+        seatTxtFld.setHorizontalAlignment(JTextField.CENTER);
+
+        seatPanel.add(drawPanel);
+        seatPanel.add(Box.createHorizontalStrut(50));
+        seatPanel.add(seatTxtFld);
 
         grid.gridx = 1;
         grid.gridy = 2;
-
-        seatPanel.add(drawPanel);
-        seatPanel.add(seatTxtArea);
         endPanel.add(seatPanel, grid);
     }
 
     public class DrawPanel extends JPanel {
 
         public DrawPanel() {
-            super.setPreferredSize(new Dimension(126, 254));
-            super.setBackground(Color.PINK);
+            super.setPreferredSize(new Dimension(175, 355));
+            super.setOpaque(false);
         }
 
         @Override
@@ -79,7 +80,7 @@ public class BusBookingPanel extends JPanel {
 
             for (int i = 0; i < eachSeat.length; i++) {
                 for (int j = 0; j < eachSeat[i].length; j++) {
-                    eachSeat[i][j].setBounds(i * 32, j * 32, 30, 30);
+                    eachSeat[i][j].setBounds(i * 42, j * 42, 45, 45);
                 }
             }
         }

@@ -4,6 +4,7 @@ import bookingsystem.BookingSystem;
 import bookingsystem.seat.PoorSeat;
 import bookingsystem.seat.PremiumSeat;
 import bookingsystem.seat.Seat;
+import javax.swing.JPanel;
 
 public class SeatLayout {
 
@@ -82,10 +83,6 @@ public class SeatLayout {
         }
 
         return finalText;
-    }
-    
-    public void toGui() {
-        
     }
 
     // get method for seats

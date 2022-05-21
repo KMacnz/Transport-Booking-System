@@ -22,7 +22,7 @@ public class SeatLayout {
 
     private void initialise() {
         //debug
-        BookingSystem.getLog().addEntry("Function: initialise()");
+//        BookingSystem.getLog().addEntry("Function: initialise()");
 
         this.seats = new Seat[this.numberOfRows][this.numberOfColumns];
         for (int i = 0; i < numberOfRows; i++) {

@@ -18,7 +18,7 @@ public class VehicleFiles {
     // reads the file and saves the seats to the seatsLayout array with the reserved seats already reserved 
     public Reserve getSeats(SeatLayout seatLayout, String fileName) {
         //debug
-        BookingSystem.getLog().addEntry("Function: getSeats()");
+//        BookingSystem.getLog().addEntry("Function: getSeats()");
         int filledSeats = 0;
         // add reserve var
         Reserve reserve = null;
@@ -92,7 +92,7 @@ public class VehicleFiles {
     //writes the bus seatlayout to a file with ":" seperating each seat
     public static Reserve setBusSeats(String fileName) {
         //debug
-        BookingSystem.getLog().addEntry("Function: setBusSeats()");
+//        BookingSystem.getLog().addEntry("Function: setBusSeats()");
 
         FileOutputStream fileoutput;
         PrintWriter pw;
@@ -131,7 +131,7 @@ public class VehicleFiles {
     //writes the boats seatlayout to a file with ":" seperating each seat
     public static Reserve setBoatSeats(String fileName) {
         //debug
-        BookingSystem.getLog().addEntry("Function: setBoatSeats()");
+//        BookingSystem.getLog().addEntry("Function: setBoatSeats()");
 
         FileOutputStream fileoutput;
         PrintWriter pw;
@@ -170,7 +170,7 @@ public class VehicleFiles {
     //writes the trams seatlayout to a file with ":" seperating each seat
     public static Reserve setTramSeats(String fileName) {
         //debug
-        BookingSystem.getLog().addEntry("Function: setTramSeats()");
+//        BookingSystem.getLog().addEntry("Function: setTramSeats()");
 
         FileOutputStream fileoutput;
         PrintWriter pw;

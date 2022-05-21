@@ -1,10 +1,5 @@
 package bookingsystem.layout;
 
-import bookingsystem.layout.SeatLayout;
-import bookingsystem.layout.SeatPosition;
-import bookingsystem.layout.Row;
-import bookingsystem.layout.Column;
-
 public class Reserve {
 
     private final SeatLayout seatLayout;
@@ -30,16 +25,6 @@ public class Reserve {
     public Reserve(SeatLayout seatLayout) {
         this.seatLayout = seatLayout;
         this.isFilled = false;
-    }
-
-    // prints out the seats
-    public String toString() {
-        String total = "";
-        total += "----------------------------------\n";
-        total += this.seatLayout.toString().trim() + "\n";
-        total += "----------------------------------\n";
-
-        return total;
     }
 
     public boolean getFilled() {

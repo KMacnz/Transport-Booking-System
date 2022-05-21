@@ -1,5 +1,6 @@
 package bookingsystem.gui;
 
+import bookingsystem.layout.SetReservation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -27,14 +28,15 @@ public class BusBookingPanel extends JPanel {
                 eachSeat[i][j] = new JButton();
                 drawPanel.add(eachSeat[i][j]);
                 
-                int bRow = i;
-                int bCol = j + 1;
+                char bCol = (char) (65 + i);
+                int bRow = j + 1;
 
-                String a = "Seat: (" + String.valueOf(((char) (65 + i))) + ", " + (j + 1) + ")";
+                String a = "Seat: (" + bCol + ", " + bRow + ")";
                 eachSeat[i][j].addActionListener(e -> {
                     seatTxtFld.setText(a);
-                    Reserve(bRow, bCol);
                     
+                    SetReservation setReservation = new SetReservation();
+                    setReservation.reserveBus(bCol, bRow); 
                 });
             }
         }
@@ -47,7 +49,6 @@ public class BusBookingPanel extends JPanel {
         super.add(endPanel);
         
         
-
         //Bus Label 
         JLabel busLabel = new JLabel("Choose your Seats");
         grid.gridx = 1;
@@ -77,7 +78,6 @@ public class BusBookingPanel extends JPanel {
         cartBtn.addActionListener(e -> {
             System.out.println("Hewo");
         });
-        
         
         seatPanel.add(drawPanel);
         seatPanel.add(Box.createHorizontalStrut(50));
@@ -110,6 +110,8 @@ public class BusBookingPanel extends JPanel {
     }
 
     public static void main(String[] args) {
+        SetReservation booking = new SetReservation();
+        booking.setUpReservations();
         JFrame frame = new JFrame("Bus Booking Panel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(525, 480);
@@ -120,10 +122,7 @@ public class BusBookingPanel extends JPanel {
 
         frame.add(bsgui);
         frame.setVisible(true);
-    }
-    
-    public void Reserve(int row, int col) {
-        System.out.println("Seat: (" + String.valueOf(((char) (65 + row))) + ", " + col + ")");
+        
     }
 }
 

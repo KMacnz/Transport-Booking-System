@@ -14,6 +14,10 @@ public class BusBookingPanel extends JPanel {
     public JButton[][] eachSeat;
     private final GridBagConstraints grid = new GridBagConstraints();
     public JTextField seatTxtFld;
+    public JButton cartBtn;
+
+    public char bCol;
+    public int bRow;
 
     public BusBookingPanel() {
         drawPanel = new DrawPanel();
@@ -27,16 +31,16 @@ public class BusBookingPanel extends JPanel {
             for (int j = 0; j < eachSeat[i].length; j++) {
                 eachSeat[i][j] = new JButton();
                 drawPanel.add(eachSeat[i][j]);
-                
-                char bCol = (char) (65 + i);
-                int bRow = j + 1;
 
-                String a = "Seat: (" + bCol + ", " + bRow + ")";
+                char col = (char) (65 + i);
+                int row = j + 1;
+                String a = "Seat: (" + col + ", " + row + ")";
                 eachSeat[i][j].addActionListener(e -> {
                     seatTxtFld.setText(a);
+                    cartBtn.setEnabled(true);
+                    bCol = col;
+                    bRow = row;
                     
-                    SetReservation setReservation = new SetReservation();
-                    setReservation.reserveBus(bCol, bRow); 
                 });
             }
         }
@@ -47,8 +51,7 @@ public class BusBookingPanel extends JPanel {
         seatPanel.setLayout(new FlowLayout());
         bookerPanel.setLayout(new BoxLayout(bookerPanel, BoxLayout.Y_AXIS));
         super.add(endPanel);
-        
-        
+
         //Bus Label 
         JLabel busLabel = new JLabel("Choose your Seats");
         grid.gridx = 1;
@@ -67,18 +70,21 @@ public class BusBookingPanel extends JPanel {
         seatTxtFld.setText("Seat:");
         seatTxtFld.setPreferredSize(new Dimension(150, 100));
         seatTxtFld.setHorizontalAlignment(JTextField.CENTER);
-        
+
         // Cart Button
         ImageIcon cartimg = new ImageIcon("./resources/image/cart.png");
-        JButton cartBtn = new JButton("Add To Cart", cartimg);
+        cartBtn = new JButton("Add To Cart", cartimg);
         cartBtn.setBorderPainted(false);
         cartBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
         cartBtn.setHorizontalTextPosition(SwingConstants.CENTER);
+        cartBtn.setEnabled(false);
         // add listener
         cartBtn.addActionListener(e -> {
-            System.out.println("Hewo");
+            SetReservation setReservation = new SetReservation();
+                    setReservation.reserveBus(bCol, bRow);
+                    cartBtn.setEnabled(false);
         });
-        
+
         seatPanel.add(drawPanel);
         seatPanel.add(Box.createHorizontalStrut(50));
         bookerPanel.add(seatTxtFld);
@@ -122,7 +128,6 @@ public class BusBookingPanel extends JPanel {
 
         frame.add(bsgui);
         frame.setVisible(true);
-        
+
     }
 }
-

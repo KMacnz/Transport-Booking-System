@@ -55,7 +55,8 @@ public class HomePanel extends JPanel {
         boatBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Boat");
+                StartPanel.homePanel.setVisible(false);
+                StartPanel.boatBookingPanel.setVisible(true);
             }
         });
 
@@ -69,7 +70,6 @@ public class HomePanel extends JPanel {
         busBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Bus");
                 StartPanel.homePanel.setVisible(false);
                 StartPanel.busBookingPanel.setVisible(true);
             }

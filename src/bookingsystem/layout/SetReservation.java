@@ -21,100 +21,22 @@ public class SetReservation {
     }
 
     public void reserveBus(char bCol, int bRow) {
-
         boolean reserved = reserveBus.reserveSeat(new Row(bRow), new Column(bCol));
         busBooking = saveBus(busBooking, bRow, bCol);
         Cart.addBusCart();
     }
 
-//    public void reserveBoat() {
-//        //debug
-//        BookingSystem.getLog().addEntry("Function: ReserveBoat()");
-//
-//        //print out seatlayout so users can see what seats are free
-//        System.out.println(reserveBoat);
-//        Scanner scanner = new Scanner(System.in);
-//
-//        try {
-//            System.out.println("Enter a row number (1-7)");
-//            int btRow = scanner.nextInt();
-//
-//            System.out.println("Enter a column number (A-G)");
-//            char btColumn = scanner.next().charAt(0);
-//            btColumn = Character.toUpperCase(btColumn);
-//
-//            // check for valid input
-//            if (!((btRow >= 1 && btRow <= 7) && (btColumn >= 'A' && btColumn <= 'G'))) {
-//                System.out.println("Not a valid Seat! Please choose a seat in the range");
-//                reserveBoat();
-//            } else {
-//                // if valid asks user if they want to select that seat and save
-//                boatBooking = saveBoat(boatBooking, btRow, btColumn);
-//                boolean userSaved = BookingSystem.menus.menu3();
-//
-//                // if saved set the seat to reserved
-//                if (userSaved) {
-//                    boolean reserved = reserveBoat.reserveSeat(new Row(btRow), new Column(btColumn));
-//
-//                    // if the seat is already reserved print message for user and prompt them to choose another
-//                    if (!reserved) {
-//                        System.out.println("\nThis seat is already taken!");
-//                        reserveBoat();
-//                    } else {
-//                        Cart.addBoatCart();
-//                    }
-//                    // print out new updated seatlayout
-//                    System.out.println(reserveBoat);
-//                }
-//            }
-//        } catch (InputMismatchException e) {
-//            System.out.println("Please enter a valid number");
-//        }
-//    }
-//
-//    public void reserveTram() {
-//        //debug
-//        BookingSystem.getLog().addEntry("Function: ReserveTram()");
-//
-//        //print out seatlayout so users can see what seats are free
-//        System.out.println(reserveTram);
-//        Scanner scanner = new Scanner(System.in);
-//
-//        try {
-//            System.out.println("Enter a row number (1-10)");
-//            int tRow = scanner.nextInt();
-//
-//            System.out.println("Enter a column number (A-C)");
-//            char tColumn = scanner.next().charAt(0);
-//            tColumn = Character.toUpperCase(tColumn);
-//
-//            // check for valid input
-//            if (!((tRow >= 1 && tRow <= 10) && (tColumn >= 'A' && tColumn <= 'C'))) {
-//                System.out.println("Not a valid Seat! Please choose a seat in the range");
-//                reserveTram();
-//            } else {
-//                // if valid asks user if they want to select that seat and save
-//                tramBooking = saveTram(tramBooking, tRow, tColumn);
-//                boolean userSaved = BookingSystem.menus.menu3();
-//                // if saved set the seat to reserved
-//                if (userSaved) {
-//                    boolean reserved = reserveTram.reserveSeat(new Row(tRow), new Column(tColumn));
-//
-//                    // if the seat is already reserved print message for user and prompt them to choose another
-//                    if (!reserved) {
-//                        System.out.println("\nThis seat is already taken!");
-//                        reserveTram();
-//                    } else {
-//                        Cart.addTramCart();
-//                    }
-//                    // print out new updated seatlayout
-//                    System.out.println(reserveTram);
-//                }
-//            }
-//        } catch (InputMismatchException e) {
-//            System.out.println("Please enter a valid number");
-//        }
-//    }
+    public void reserveBoat(char btCol, int btRow) {
+        boolean reserved = reserveBoat.reserveSeat(new Row(btRow), new Column(btCol));
+        boatBooking = saveBus(boatBooking, btRow, btCol);
+        Cart.addBoatCart();
+    }
+
+    public void reserveTram(char tCol, int tRow) {
+        boolean reserved = reserveTram.reserveSeat(new Row(tRow), new Column(tCol));
+        tramBooking = saveBus(tramBooking, tRow, tCol);
+        Cart.addTramCart();
+    }
     // saves the seat to a string and takes it to the add cart method
     public String saveBus(String busBooking, int bRow, char bCol) {
         busBooking = ("Bus (" + bRow + "," + bCol + ")");

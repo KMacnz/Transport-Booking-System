@@ -11,21 +11,20 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.*;
 
-public class BoatBookingPanel extends JPanel{
-    
+public class TramBookingPanel extends JPanel{
     private final DrawPanel drawPanel;
     public JButton[][] eachSeat;
     private final GridBagConstraints grid = new GridBagConstraints();
     public JTextField seatTxtFld;
     public JButton cartBtn;
 
-    public char bCol;
-    public int bRow;
+    public char tCol;
+    public int tRow;
 
-    public BoatBookingPanel() {
+    public TramBookingPanel() {
 
-        JPanel boatBookingPanel = new JPanel(new GridBagLayout());
-        boatBookingPanel.setOpaque(false);
+        JPanel tramBookingPanel = new JPanel(new GridBagLayout());
+        tramBookingPanel.setOpaque(false);
         setOpaque(false);
         drawPanel = new DrawPanel();
 
@@ -33,7 +32,7 @@ public class BoatBookingPanel extends JPanel{
         drawPanel.repaint();
 
         //initialize elements
-        eachSeat = new JButton[7][7];
+        eachSeat = new JButton[3][8];
         for (int i = 0; i < eachSeat.length; i++) {
             for (int j = 0; j < eachSeat[i].length; j++) {
                 eachSeat[i][j] = new JButton();
@@ -45,7 +44,7 @@ public class BoatBookingPanel extends JPanel{
                 int row = j + 1;
                 String a = "Seat: (" + col + ", " + row + ")";
 
-                if (SetReservation.reserveBoat.isReserved(new Row(row), new Column(col))) {
+                if (SetReservation.reserveTram.isReserved(new Row(row), new Column(col))) {
                     eachSeat[i][j].setEnabled(false);
                     eachSeat[i][j].setOpaque(false);
                 }
@@ -53,8 +52,8 @@ public class BoatBookingPanel extends JPanel{
                 eachSeat[i][j].addActionListener(e -> {
                     seatTxtFld.setText(a);
                     cartBtn.setEnabled(true);
-                    bCol = col;
-                    bRow = row;
+                    tCol = col;
+                    tRow = row;
                 });
             }
         }
@@ -71,18 +70,18 @@ public class BoatBookingPanel extends JPanel{
         bottomPanel.setOpaque(false);
         bottomPanel.setLayout(new FlowLayout());
 
-        this.add(boatBookingPanel);
+        this.add(tramBookingPanel);
 
-        //Boat Label 
-        JLabel boatLabel = new JLabel("Choose your Boat Seats");
+        //Tram Label 
+        JLabel tramLabel = new JLabel("Choose your Tram Seats");
         grid.gridx = 1;
         grid.gridy = 1;
         grid.ipady = 50;
-        boatBookingPanel.add(boatLabel, grid);
+        tramBookingPanel.add(tramLabel, grid);
 
-        boatLabel.setFont(new java.awt.Font("Kannada MN", 1, 24));
-        boatLabel.setForeground(new java.awt.Color(0, 0, 0));
-        boatLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tramLabel.setFont(new java.awt.Font("Kannada MN", 1, 24));
+        tramLabel.setForeground(new java.awt.Color(0, 0, 0));
+        tramLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         //Seat Text Area 
         seatTxtFld = new JTextField();
@@ -102,12 +101,12 @@ public class BoatBookingPanel extends JPanel{
         // add listener
         cartBtn.addActionListener(e -> {
             SetReservation setReservation = new SetReservation();
-            setReservation.reserveBoat(bCol, bRow);
+            setReservation.reserveTram(tCol, tRow);
             cartBtn.setEnabled(false);
-            SetReservation.reserveBoat.reserveSeat(new Row(bRow), new Column(bCol));
-            eachSeat[bCol - 65][bRow - 1].setBackground(Color.RED);
-            eachSeat[bCol - 65][bRow - 1].setOpaque(true);
-            eachSeat[bCol - 65][bRow - 1].setEnabled(false);
+            SetReservation.reserveTram.reserveSeat(new Row(tRow), new Column(tCol));
+            eachSeat[tCol - 65][tRow - 1].setBackground(Color.RED);
+            eachSeat[tCol - 65][tRow - 1].setOpaque(true);
+            eachSeat[tCol - 65][tRow - 1].setEnabled(false);
         });
 
         // Back Button
@@ -118,12 +117,12 @@ public class BoatBookingPanel extends JPanel{
         backBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         // add listener
         backBtn.addActionListener(e -> {
-            StartPanel.boatBookingPanel.setVisible(false);
+            StartPanel.tramBookingPanel.setVisible(false);
             StartPanel.homePanel.setVisible(true);
         });
 
         seatPanel.add(drawPanel);
-        seatPanel.add(Box.createHorizontalStrut(10));
+        seatPanel.add(Box.createHorizontalStrut(50));
         bookerPanel.add(seatTxtFld);
         bookerPanel.add(bottomPanel);
         bottomPanel.add(cartBtn);
@@ -132,13 +131,13 @@ public class BoatBookingPanel extends JPanel{
 
         grid.gridx = 1;
         grid.gridy = 2;
-        boatBookingPanel.add(seatPanel, grid);
+        tramBookingPanel.add(seatPanel, grid);
     }
 
     public class DrawPanel extends JPanel {
 
         public DrawPanel() {
-            super.setPreferredSize(new Dimension(312, 312));
+            super.setPreferredSize(new Dimension(129, 355));
             super.setOpaque(false);
         }
 

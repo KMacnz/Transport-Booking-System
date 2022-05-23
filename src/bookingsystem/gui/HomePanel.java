@@ -85,7 +85,8 @@ public class HomePanel extends JPanel {
         tramBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Tram");
+                StartPanel.homePanel.setVisible(false);
+                StartPanel.tramBookingPanel.setVisible(true);
             }
         });
 

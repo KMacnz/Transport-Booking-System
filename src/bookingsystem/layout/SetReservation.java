@@ -17,7 +17,7 @@ public class SetReservation {
     public void setUpReservations() {
         reserveBus = vehicleFiles.getSeats(new SeatLayout(8, 4), "./resources/Seatsbus.txt");
         reserveBoat = vehicleFiles.getSeats(new SeatLayout(7, 7), "./resources/Seatsboat.txt");
-        reserveTram = vehicleFiles.getSeats(new SeatLayout(10, 3), "./resources/Seatstram.txt");
+        reserveTram = vehicleFiles.getSeats(new SeatLayout(8, 3), "./resources/Seatstram.txt");
     }
 
     public void reserveBus(char bCol, int bRow) {

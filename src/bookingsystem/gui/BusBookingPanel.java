@@ -74,7 +74,7 @@ public class BusBookingPanel extends JPanel {
         this.add(busBookingPanel);
 
         //Bus Label 
-        JLabel busLabel = new JLabel("Choose your Seats");
+        JLabel busLabel = new JLabel("Choose your Bus Seats");
         grid.gridx = 1;
         grid.gridy = 1;
         grid.ipady = 50;

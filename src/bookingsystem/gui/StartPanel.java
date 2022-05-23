@@ -12,6 +12,7 @@ public class StartPanel extends JPanel {
 
     public static JPanel startPanel;
     public static HomePanel homePanel;
+    public static BusBookingPanel busBookingPanel;
 
     public static EndPanel endPanel;
 
@@ -20,6 +21,10 @@ public class StartPanel extends JPanel {
         homePanel = new HomePanel();
         add(homePanel);
         homePanel.setVisible(false);
+        
+        busBookingPanel = new BusBookingPanel();
+        add(busBookingPanel);
+        busBookingPanel.setVisible(false);
 
         endPanel = new EndPanel();
         add(endPanel);

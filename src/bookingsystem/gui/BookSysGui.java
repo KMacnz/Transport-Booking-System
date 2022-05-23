@@ -1,6 +1,7 @@
 package bookingsystem.gui;
 
 import javax.swing.JFrame;
+import bookingsystem.layout.SetReservation;
 
 public class BookSysGui extends JFrame {
 
@@ -24,6 +25,9 @@ public class BookSysGui extends JFrame {
     }
 
     public static void main(String args[]) {
+        SetReservation booking = new SetReservation();
+        booking.setUpReservations();
+        
         BookSysGui bsgui = new BookSysGui();
         bsgui.setVisible(true);
     }

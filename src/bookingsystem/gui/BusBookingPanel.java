@@ -23,6 +23,10 @@ public class BusBookingPanel extends JPanel {
     public int bRow;
 
     public BusBookingPanel() {
+        
+        JPanel busBookingPanel = new JPanel(new GridBagLayout());
+        busBookingPanel.setOpaque(false);
+        setOpaque(false);
         drawPanel = new DrawPanel();
 
         // repaint the panel
@@ -51,26 +55,30 @@ public class BusBookingPanel extends JPanel {
                     cartBtn.setEnabled(true);
                     bCol = col;
                     bRow = row;
-
                 });
             }
         }
 
-        JPanel endPanel = new JPanel(new GridBagLayout());
         JPanel seatPanel = new JPanel();
-        JPanel bookerPanel = new JPanel();
-        JPanel bottomPanel = new JPanel();
+        seatPanel.setOpaque(false);
         seatPanel.setLayout(new FlowLayout());
+        
+        JPanel bookerPanel = new JPanel();
+        bookerPanel.setOpaque(false);
         bookerPanel.setLayout(new BoxLayout(bookerPanel, BoxLayout.Y_AXIS));
+        
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setOpaque(false);
         bottomPanel.setLayout(new FlowLayout());
-        super.add(endPanel);
+        
+        this.add(busBookingPanel);
 
         //Bus Label 
         JLabel busLabel = new JLabel("Choose your Seats");
         grid.gridx = 1;
         grid.gridy = 1;
         grid.ipady = 50;
-        endPanel.add(busLabel, grid);
+        busBookingPanel.add(busLabel, grid);
 
         busLabel.setFont(new java.awt.Font("Kannada MN", 1, 24));
         busLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -110,7 +118,8 @@ public class BusBookingPanel extends JPanel {
         backBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         // add listener
         backBtn.addActionListener(e -> {
-            System.out.println("Back");
+            StartPanel.busBookingPanel.setVisible(false);
+            StartPanel.homePanel.setVisible(true);
         });
 
         seatPanel.add(drawPanel);
@@ -123,7 +132,7 @@ public class BusBookingPanel extends JPanel {
 
         grid.gridx = 1;
         grid.gridy = 2;
-        endPanel.add(seatPanel, grid);
+        busBookingPanel.add(seatPanel, grid);
     }
 
     public class DrawPanel extends JPanel {
@@ -152,12 +161,12 @@ public class BusBookingPanel extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(525, 480);
         frame.setLocationRelativeTo(null);
+        
 
         BusBookingPanel bsgui = new BusBookingPanel();
         bsgui.setVisible(true);
 
         frame.add(bsgui);
         frame.setVisible(true);
-
     }
 }

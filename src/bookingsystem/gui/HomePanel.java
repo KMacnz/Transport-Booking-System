@@ -70,6 +70,8 @@ public class HomePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Bus");
+                StartPanel.homePanel.setVisible(false);
+                StartPanel.busBookingPanel.setVisible(true);
             }
         });
 

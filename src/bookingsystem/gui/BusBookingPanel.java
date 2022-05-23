@@ -23,7 +23,7 @@ public class BusBookingPanel extends JPanel {
     public int bRow;
 
     public BusBookingPanel() {
-        
+
         JPanel busBookingPanel = new JPanel(new GridBagLayout());
         busBookingPanel.setOpaque(false);
         setOpaque(false);
@@ -62,15 +62,15 @@ public class BusBookingPanel extends JPanel {
         JPanel seatPanel = new JPanel();
         seatPanel.setOpaque(false);
         seatPanel.setLayout(new FlowLayout());
-        
+
         JPanel bookerPanel = new JPanel();
         bookerPanel.setOpaque(false);
         bookerPanel.setLayout(new BoxLayout(bookerPanel, BoxLayout.Y_AXIS));
-        
+
         JPanel bottomPanel = new JPanel();
         bottomPanel.setOpaque(false);
         bottomPanel.setLayout(new FlowLayout());
-        
+
         this.add(busBookingPanel);
 
         //Bus Label 
@@ -152,21 +152,5 @@ public class BusBookingPanel extends JPanel {
                 }
             }
         }
-    }
-
-    public static void main(String[] args) {
-        SetReservation booking = new SetReservation();
-        booking.setUpReservations();
-        JFrame frame = new JFrame("Bus Booking Panel");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(525, 480);
-        frame.setLocationRelativeTo(null);
-        
-
-        BusBookingPanel bsgui = new BusBookingPanel();
-        bsgui.setVisible(true);
-
-        frame.add(bsgui);
-        frame.setVisible(true);
     }
 }

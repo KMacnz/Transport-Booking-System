@@ -15,32 +15,24 @@ public class SetReservation {
 
     //goes to vehicle files and gets my seats from the files and stores them at the start of the project
     public void setUpReservations() {
-        //debug
-//        BookingSystem.getLog().addEntry("Function: setUpReservations()");
         reserveBus = vehicleFiles.getSeats(new SeatLayout(8, 4), "./resources/Seatsbus.txt");
         reserveBoat = vehicleFiles.getSeats(new SeatLayout(7, 7), "./resources/Seatsboat.txt");
         reserveTram = vehicleFiles.getSeats(new SeatLayout(10, 3), "./resources/Seatstram.txt");
     }
 
     public void reserveBus(char bCol, int bRow) {
-//        //debug
-//        BookingSystem.getLog().addEntry("Function: ReserveBus()");
+        boolean reserved = reserveBus.reserveSeat(new Row(bRow), new Column(bCol));
 
+        // if the seat is already reserved print message for user and prompt them to choose another
+        if (!reserved) {
+            System.out.println("\nThis seat is already taken!");
+        } else {
 
-                    System.out.println("Seat: (" + bCol + ", " + bRow + ")");
-                    System.out.println("u got here");
+            busBooking = saveBus(busBooking, bRow, bCol);
+            Cart.addBusCart();
 
-                    boolean reserved = reserveBus.reserveSeat(new Row(bRow), new Column(bCol));
-
-                    // if the seat is already reserved print message for user and prompt them to choose another
-                    if (!reserved) {
-                        System.out.println("\nThis seat is already taken!");
-                    } else {
-                        System.out.println("\nYAY");
-                        Cart.addBusCart();
-
-                    }
-                }
+        }
+    }
 
 //    public void reserveBoat() {
 //        //debug
@@ -130,7 +122,6 @@ public class SetReservation {
 //            System.out.println("Please enter a valid number");
 //        }
 //    }
-
     // saves the seat to a string and takes it to the add cart method
     public String saveBus(String busBooking, int bRow, char bCol) {
         busBooking = ("Bus (" + bRow + "," + bCol + ")");

@@ -110,6 +110,5 @@ public class HomePanel extends JPanel {
         grid.gridx = 1;
         grid.gridy = 4;
         homePanel.add(btnPanel2, grid);
-
     }
 }

@@ -14,11 +14,8 @@ public class Cart {
     public static ArrayList<String> tramCart = new ArrayList<String>();
 
     public static void addBusCart() {
-        //debug
-//        BookingSystem.getLog().addEntry("Function: addBusCart()");
-
         busCart.add(SetReservation.busBooking);
-        System.out.println("amongus" + busCart);
+        System.out.println(busCart);
     }
 
     public static void addBoatCart() {

@@ -16,17 +16,8 @@ public class Reserve {
             return true;
         }
         return false;
-//        if ((this.seatLayout.getColumnOfSeats(column).length > 0) && (this.seatLayout.getRowOfSeats(row).length > 0)) {
-//            if (!this.seatLayout.getSeat(new SeatPosition(row, column)).isReserved()) {
-//                this.seatLayout.getSeat(new SeatPosition(row, column)).setEmpty(false);
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        }
-//        return false;
     }
-    
+
     public boolean isReserved(Row row, Column column) {
         if ((this.seatLayout.getColumnOfSeats(column).length > 0) && (this.seatLayout.getRowOfSeats(row).length > 0)) {
             if (this.seatLayout.getSeat(new SeatPosition(row, column)).isReserved()) {
@@ -50,5 +41,4 @@ public class Reserve {
     public void setFilled(boolean isFilled) {
         this.isFilled = isFilled;
     }
-
 }

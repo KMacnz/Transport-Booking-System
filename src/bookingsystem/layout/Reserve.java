@@ -11,9 +11,25 @@ public class Reserve {
 
     // reserves according to row and column returns true if reserves successful
     public boolean reserveSeat(Row row, Column column) {
+        if (!isReserved(row, column)) {
+            this.seatLayout.getSeat(new SeatPosition(row, column)).setEmpty(false);
+            return true;
+        }
+        return false;
+//        if ((this.seatLayout.getColumnOfSeats(column).length > 0) && (this.seatLayout.getRowOfSeats(row).length > 0)) {
+//            if (!this.seatLayout.getSeat(new SeatPosition(row, column)).isReserved()) {
+//                this.seatLayout.getSeat(new SeatPosition(row, column)).setEmpty(false);
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        }
+//        return false;
+    }
+    
+    public boolean isReserved(Row row, Column column) {
         if ((this.seatLayout.getColumnOfSeats(column).length > 0) && (this.seatLayout.getRowOfSeats(row).length > 0)) {
-            if (!this.seatLayout.getSeat(new SeatPosition(row, column)).isReserved()) {
-                this.seatLayout.getSeat(new SeatPosition(row, column)).setEmpty(false);
+            if (this.seatLayout.getSeat(new SeatPosition(row, column)).isReserved()) {
                 return true;
             } else {
                 return false;

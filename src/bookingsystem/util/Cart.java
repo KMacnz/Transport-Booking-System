@@ -1,6 +1,5 @@
 package bookingsystem.util;
 
-import bookingsystem.BookingSystem;
 import bookingsystem.layout.SetReservation;
 import java.util.ArrayList;
 
@@ -16,15 +15,15 @@ public class Cart {
 
     public static void addBusCart() {
         //debug
-        BookingSystem.getLog().addEntry("Function: addBusCart()");
+//        BookingSystem.getLog().addEntry("Function: addBusCart()");
 
         busCart.add(SetReservation.busBooking);
-        System.out.println(busCart);
+        System.out.println("amongus" + busCart);
     }
 
     public static void addBoatCart() {
         //debug
-        BookingSystem.getLog().addEntry("Function: addBoatCart()");
+//        BookingSystem.getLog().addEntry("Function: addBoatCart()");
 
         boatCart.add(SetReservation.boatBooking);
         System.out.println(boatCart);
@@ -32,7 +31,7 @@ public class Cart {
 
     public static void addTramCart() {
         //debug
-        BookingSystem.getLog().addEntry("Function: addTramCart()");
+//        BookingSystem.getLog().addEntry("Function: addTramCart()");
 
         tramCart.add(SetReservation.tramBooking);
         System.out.println(tramCart);

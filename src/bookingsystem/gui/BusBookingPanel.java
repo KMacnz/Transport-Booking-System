@@ -1,6 +1,9 @@
 package bookingsystem.gui;
 
+import bookingsystem.layout.Column;
+import bookingsystem.layout.Row;
 import bookingsystem.layout.SetReservation;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -30,17 +33,25 @@ public class BusBookingPanel extends JPanel {
         for (int i = 0; i < eachSeat.length; i++) {
             for (int j = 0; j < eachSeat[i].length; j++) {
                 eachSeat[i][j] = new JButton();
+                eachSeat[i][j].setBackground(Color.GREEN);
+                eachSeat[i][j].setOpaque(true);
                 drawPanel.add(eachSeat[i][j]);
 
                 char col = (char) (65 + i);
                 int row = j + 1;
                 String a = "Seat: (" + col + ", " + row + ")";
+
+                if (SetReservation.reserveBus.isReserved(new Row(row), new Column(col))) {
+                    eachSeat[i][j].setEnabled(false);
+                    eachSeat[i][j].setOpaque(false);
+                }
+
                 eachSeat[i][j].addActionListener(e -> {
                     seatTxtFld.setText(a);
                     cartBtn.setEnabled(true);
                     bCol = col;
                     bRow = row;
-                    
+
                 });
             }
         }
@@ -48,8 +59,10 @@ public class BusBookingPanel extends JPanel {
         JPanel endPanel = new JPanel(new GridBagLayout());
         JPanel seatPanel = new JPanel();
         JPanel bookerPanel = new JPanel();
+        JPanel bottomPanel = new JPanel();
         seatPanel.setLayout(new FlowLayout());
         bookerPanel.setLayout(new BoxLayout(bookerPanel, BoxLayout.Y_AXIS));
+        bottomPanel.setLayout(new FlowLayout());
         super.add(endPanel);
 
         //Bus Label 
@@ -81,14 +94,31 @@ public class BusBookingPanel extends JPanel {
         // add listener
         cartBtn.addActionListener(e -> {
             SetReservation setReservation = new SetReservation();
-                    setReservation.reserveBus(bCol, bRow);
-                    cartBtn.setEnabled(false);
+            setReservation.reserveBus(bCol, bRow);
+            cartBtn.setEnabled(false);
+            SetReservation.reserveBus.reserveSeat(new Row(bRow), new Column(bCol));
+            eachSeat[bCol - 65][bRow - 1].setBackground(Color.RED);
+            eachSeat[bCol - 65][bRow - 1].setOpaque(true);
+            eachSeat[bCol - 65][bRow - 1].setEnabled(false);
+        });
+
+        // Back Button
+        ImageIcon backimg = new ImageIcon("./resources/image/back.png");
+        JButton backBtn = new JButton("Back", backimg);
+        backBtn.setBorderPainted(false);
+        backBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        backBtn.setHorizontalTextPosition(SwingConstants.CENTER);
+        // add listener
+        backBtn.addActionListener(e -> {
+            System.out.println("Back");
         });
 
         seatPanel.add(drawPanel);
         seatPanel.add(Box.createHorizontalStrut(50));
         bookerPanel.add(seatTxtFld);
-        bookerPanel.add(cartBtn);
+        bookerPanel.add(bottomPanel);
+        bottomPanel.add(cartBtn);
+        bottomPanel.add(backBtn);
         seatPanel.add(bookerPanel);
 
         grid.gridx = 1;

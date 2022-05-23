@@ -21,17 +21,10 @@ public class SetReservation {
     }
 
     public void reserveBus(char bCol, int bRow) {
+
         boolean reserved = reserveBus.reserveSeat(new Row(bRow), new Column(bCol));
-
-        // if the seat is already reserved print message for user and prompt them to choose another
-        if (!reserved) {
-            System.out.println("\nThis seat is already taken!");
-        } else {
-
-            busBooking = saveBus(busBooking, bRow, bCol);
-            Cart.addBusCart();
-
-        }
+        busBooking = saveBus(busBooking, bRow, bCol);
+        Cart.addBusCart();
     }
 
 //    public void reserveBoat() {

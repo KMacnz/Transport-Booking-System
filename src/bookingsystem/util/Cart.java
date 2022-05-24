@@ -23,6 +23,5 @@ public class Cart {
     public static void addTramCart() {
         tramCart.add(SetReservation.tramBooking);
         System.out.println(tramCart);
-    }
-
+    }  
 }

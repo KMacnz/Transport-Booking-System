@@ -16,6 +16,7 @@ public class StartPanel extends JPanel {
     public static BoatBookingPanel boatBookingPanel;
     public static TramBookingPanel tramBookingPanel;
     public static ReciptPanel reciptPanel;
+    public static CartPanel cartPanel;
 
     public static EndPanel endPanel;
 
@@ -106,8 +107,11 @@ public class StartPanel extends JPanel {
 
         // add listener
         cartBtn.addActionListener(e -> {
-            StartPanel.endPanel.setVisible(true);
-            StartPanel.homePanel.setVisible(true);
+            StartPanel.startPanel.setVisible(false);
+            cartPanel = new CartPanel();
+            add(cartPanel);
+            cartPanel.setVisible(true);
+
         });
 
         // Quit Button

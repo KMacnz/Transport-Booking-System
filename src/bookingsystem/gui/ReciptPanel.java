@@ -31,7 +31,7 @@ public class ReciptPanel extends JPanel{
         idLabel.setForeground(new java.awt.Color(0, 0, 0));
         idLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         
-        
+        // User Input 
         JTextField userTypeFld = new JTextField();
         userTypeFld.setFont(new java.awt.Font("Monospaced", 0, 15));
         userTypeFld.setPreferredSize(new Dimension(100, 50));
@@ -41,6 +41,7 @@ public class ReciptPanel extends JPanel{
         grid.gridy = 2;
         reciptPanel.add(userTypeFld, grid);
         
+        // Recipt gets printed
         reciptTxtFld = new JTextArea();
         reciptTxtFld.setEditable(false);
         reciptTxtFld.setFont(new java.awt.Font("Monospaced", 0, 15));

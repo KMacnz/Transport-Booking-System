@@ -28,13 +28,13 @@ public class SetReservation {
 
     public void reserveBoat(char btCol, int btRow) {
         boolean reserved = reserveBoat.reserveSeat(new Row(btRow), new Column(btCol));
-        boatBooking = saveBus(boatBooking, btRow, btCol);
+        boatBooking = saveBoat(boatBooking, btRow, btCol);
         Cart.addBoatCart();
     }
 
     public void reserveTram(char tCol, int tRow) {
         boolean reserved = reserveTram.reserveSeat(new Row(tRow), new Column(tCol));
-        tramBooking = saveBus(tramBooking, tRow, tCol);
+        tramBooking = saveTram(tramBooking, tRow, tCol);
         Cart.addTramCart();
     }
     // saves the seat to a string and takes it to the add cart method

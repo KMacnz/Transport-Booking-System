@@ -1,5 +1,6 @@
 package bookingsystem.gui;
 
+import bookingsystem.util.Cart;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -39,20 +40,11 @@ public class EndPanel extends JPanel {
         saveBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
         saveBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         saveBtn.setBorderPainted(false);
-        btnPanel.add(saveBtn);
-
-        // add listener
-        saveBtn.addActionListener(e -> {
-            saveLabel.setText("Your Booking has been Saved");
-            saveBtn.setVisible(false);
-
-            // add thank you message
-            JLabel endLabel = new JLabel("-Thank you for your vist-");
-            grid.gridx = 1;
-            grid.gridy = 3;
-            endPanel.add(endLabel, grid);
-
-        });
+        
+        // if carts have an item in them make the save button visible
+        if (!(Cart.busCart.isEmpty() && Cart.boatCart.isEmpty() && Cart.tramCart.isEmpty())) {
+            btnPanel.add(saveBtn);
+        }
 
         // Quit Button
         ImageIcon quitimg = new ImageIcon("./resources/image/noSave.png");
@@ -71,5 +63,38 @@ public class EndPanel extends JPanel {
         grid.gridx = 1;
         grid.gridy = 2;
         endPanel.add(btnPanel, grid);
+        
+        // Back Button
+        ImageIcon backimg = new ImageIcon("./resources/image/back.png");
+        JButton backBtn = new JButton("Back", backimg);
+        backBtn.setBorderPainted(false);
+        backBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        backBtn.setHorizontalTextPosition(SwingConstants.CENTER);
+        // add listener
+        backBtn.addActionListener(e -> {
+            StartPanel.endPanel.setVisible(false);
+            StartPanel.startPanel.setVisible(true);
+        });
+        
+        grid.gridx = 1;
+        grid.gridy = 4;
+        endPanel.add(backBtn, grid);
+        
+        
+        // add listener
+        saveBtn.addActionListener(e -> {
+            saveLabel.setText("Your Booking has been Saved");
+            saveBtn.setVisible(false);
+            backBtn.setVisible(false);
+
+            // add thank you message
+            JLabel endLabel = new JLabel("-Thank you for your vist-");
+            grid.gridx = 1;
+            grid.gridy = 3;
+            endPanel.add(endLabel, grid);
+
+        });
+        
+        
     }
 }

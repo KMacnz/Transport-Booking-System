@@ -1,10 +1,8 @@
 package bookingsystem.file;
 
-import bookingsystem.BookingSystem;
-import bookingsystem.util.Cart;
+import bookingsystem.gui.StartPanel;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -41,81 +39,74 @@ public class PrintRecipt extends Printer {
 
                     // if user input id is equal to one of the ids in the hashmap 
                     if (lineID.equals(String.valueOf(id))) {
-                        System.out.println("----------------------------------");
-                        System.out.println("     Here's your booking info     ");
-                        System.out.println("ID: " + entry[0]);
-                        System.out.println(entry[1]);
-                        System.out.println("----------------------------------");
+                        StartPanel.reciptPanel.reciptTxtFld.setText("ID: " + lineID + "\n" + content);
+
+                    } else {
+                        StartPanel.reciptPanel.reciptTxtFld.setText("ID does not exist");
                     }
-
-                    recipts.put(lineID, content);
-
                 } else {
                     EOF = true;
                 }
             }
-
             br.close();
 
         } catch (FileNotFoundException ex) {
-
         } catch (IOException ex) {
-
         }
-
         return "";
     }
 
+//    @Override
+//    //write to file if items from cart is saved
+//    public void write() {
+//
+//        FileOutputStream fileoutput;
+//        PrintWriter printwriter;
+//
+//        try {
+//            fileoutput = new FileOutputStream("./resources/StoreRecipts.txt", true);
+//            printwriter = new PrintWriter(fileoutput);
+//
+//            //write
+//            printwriter.append("\n" + BookingSystem.id + " : ");
+//            if (!Cart.boatCart.isEmpty()) {
+//                printwriter.append(Cart.boatCart + " ");
+//            }
+//            if (!Cart.busCart.isEmpty()) {
+//                printwriter.append(Cart.busCart + " ");
+//            }
+//            if (!Cart.tramCart.isEmpty()) {
+//                printwriter.append(Cart.tramCart + "");
+//            }
+//
+//            // close
+//            printwriter.close();
+//
+//        } catch (IOException ex) {
+//        }
+//    }
+//    //write out the cart items to CLI 
+//    public void printRecipt() {
+//        //debug
+//        BookingSystem.getLog().addEntry("Function: printRecipt()");
+//
+//        System.out.println("");
+//        System.out.println("----------------------------------");
+//        System.out.println("     Here's your booking info     ");
+//        System.out.println(("ID: " + BookingSystem.id));
+//        if (!Cart.boatCart.isEmpty()) {
+//            System.out.println(Cart.boatCart);
+//        }
+//        if (!Cart.busCart.isEmpty()) {
+//            System.out.println(Cart.busCart);
+//        }
+//        if (!Cart.tramCart.isEmpty()) {
+//            System.out.println(Cart.tramCart);
+//        }
+//        System.out.println("----------------------------------");
+//    }
     @Override
-    //write to file if items from cart is saved
     public void write() {
-        //debug
-        BookingSystem.getLog().addEntry("Function: reciptWrite()");
-
-        FileOutputStream fileoutput;
-        PrintWriter printwriter;
-
-        try {
-            fileoutput = new FileOutputStream("./resources/StoreRecipts.txt", true);
-            printwriter = new PrintWriter(fileoutput);
-
-            //write
-            printwriter.append("\n" + BookingSystem.id + " : ");
-            if (!Cart.boatCart.isEmpty()) {
-                printwriter.append(Cart.boatCart + " ");
-            }
-            if (!Cart.busCart.isEmpty()) {
-                printwriter.append(Cart.busCart + " ");
-            }
-            if (!Cart.tramCart.isEmpty()) {
-                printwriter.append(Cart.tramCart + "");
-            }
-
-            // close
-            printwriter.close();
-
-        } catch (IOException ex) {
-        }
-    }
-
-    //write out the cart items to CLI 
-    public void printRecipt() {
-        //debug
-        BookingSystem.getLog().addEntry("Function: printRecipt()");
-
-        System.out.println("");
-        System.out.println("----------------------------------");
-        System.out.println("     Here's your booking info     ");
-        System.out.println(("ID: " + BookingSystem.id));
-        if (!Cart.boatCart.isEmpty()) {
-            System.out.println(Cart.boatCart);
-        }
-        if (!Cart.busCart.isEmpty()) {
-            System.out.println(Cart.busCart);
-        }
-        if (!Cart.tramCart.isEmpty()) {
-            System.out.println(Cart.tramCart);
-        }
-        System.out.println("----------------------------------");
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

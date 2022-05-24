@@ -118,7 +118,7 @@ public class TramBookingPanel extends JPanel{
         // add listener
         backBtn.addActionListener(e -> {
             StartPanel.tramBookingPanel.setVisible(false);
-            StartPanel.homePanel.setVisible(true);
+            StartPanel.startPanel.setVisible(true);
         });
 
         seatPanel.add(drawPanel);

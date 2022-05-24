@@ -15,6 +15,7 @@ public class StartPanel extends JPanel {
     public static BusBookingPanel busBookingPanel;
     public static BoatBookingPanel boatBookingPanel;
     public static TramBookingPanel tramBookingPanel;
+    public static ReciptPanel reciptPanel;
 
     public static EndPanel endPanel;
 
@@ -23,23 +24,22 @@ public class StartPanel extends JPanel {
         homePanel = new HomePanel();
         add(homePanel);
         homePanel.setVisible(false);
-        
+
         busBookingPanel = new BusBookingPanel();
         add(busBookingPanel);
         busBookingPanel.setVisible(false);
-        
+
         boatBookingPanel = new BoatBookingPanel();
         add(boatBookingPanel);
         boatBookingPanel.setVisible(false);
-        
+
         tramBookingPanel = new TramBookingPanel();
         add(tramBookingPanel);
         tramBookingPanel.setVisible(false);
-        
 
-        endPanel = new EndPanel();
-        add(endPanel);
-        endPanel.setVisible(false);
+        reciptPanel = new ReciptPanel();
+        add(reciptPanel);
+        reciptPanel.setVisible(false);
 
         startPanel = new JPanel();
         startPanel.setLayout(new GridBagLayout());
@@ -88,7 +88,7 @@ public class StartPanel extends JPanel {
         // add listener
         recieptBtn.addActionListener(e -> {
             startPanel.setVisible(false);
-
+            StartPanel.reciptPanel.setVisible(true);
         });
 
         // add panel for bottom buttons
@@ -96,17 +96,18 @@ public class StartPanel extends JPanel {
         btnPanel2.setLayout(new FlowLayout());
         btnPanel2.setOpaque(false);
 
-        // Log Button
-        ImageIcon logimg = new ImageIcon("./resources/image/logs.png");
-        JButton logBtn = new JButton("View Logs", logimg);
-        logBtn.setBorderPainted(false);
-        logBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
-        logBtn.setHorizontalTextPosition(SwingConstants.CENTER);
-        btnPanel2.add(logBtn);
+        // Cart Button
+        ImageIcon cartImg = new ImageIcon("./resources/image/cartview.png");
+        JButton cartBtn = new JButton("View Cart", cartImg);
+        cartBtn.setBorderPainted(false);
+        cartBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        cartBtn.setHorizontalTextPosition(SwingConstants.CENTER);
+        btnPanel2.add(cartBtn);
 
         // add listener
-        logBtn.addActionListener(e -> {
-            startPanel.setVisible(false);
+        cartBtn.addActionListener(e -> {
+            StartPanel.endPanel.setVisible(true);
+            StartPanel.homePanel.setVisible(true);
         });
 
         // Quit Button
@@ -120,7 +121,9 @@ public class StartPanel extends JPanel {
         // add listener
         quitBtn.addActionListener(e -> {
             startPanel.setVisible(false);
-            StartPanel.endPanel.setVisible(true);
+            endPanel = new EndPanel();
+            add(endPanel);
+            endPanel.setVisible(true);
         });
 
         grid.gridx = 1;

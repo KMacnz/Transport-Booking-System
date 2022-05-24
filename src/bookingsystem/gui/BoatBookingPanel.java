@@ -119,7 +119,7 @@ public class BoatBookingPanel extends JPanel{
         // add listener
         backBtn.addActionListener(e -> {
             StartPanel.boatBookingPanel.setVisible(false);
-            StartPanel.homePanel.setVisible(true);
+            StartPanel.startPanel.setVisible(true);
         });
 
         seatPanel.add(drawPanel);

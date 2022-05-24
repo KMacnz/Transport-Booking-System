@@ -1,6 +1,5 @@
 package bookingsystem.util;
 
-import bookingsystem.BookingSystem;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -60,8 +59,6 @@ public class IdNum {
 
     // appends the idnumber file and adds the new ID to the bottom if saved
     public static void saveId(int id) {
-        //debug
-        BookingSystem.getLog().addEntry("Function: saveId()");
 
         FileOutputStream fileoutput;
         PrintWriter pw;

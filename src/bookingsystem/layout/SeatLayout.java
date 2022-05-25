@@ -1,10 +1,8 @@
 package bookingsystem.layout;
 
-import bookingsystem.BookingSystem;
 import bookingsystem.seat.PoorSeat;
 import bookingsystem.seat.PremiumSeat;
 import bookingsystem.seat.Seat;
-import javax.swing.JPanel;
 
 public class SeatLayout {
 
@@ -21,9 +19,6 @@ public class SeatLayout {
     }
 
     private void initialise() {
-        //debug
-//        BookingSystem.getLog().addEntry("Function: initialise()");
-
         this.seats = new Seat[this.numberOfRows][this.numberOfColumns];
         for (int i = 0; i < numberOfRows; i++) {
             for (int j = 0; j < numberOfColumns; j++) {

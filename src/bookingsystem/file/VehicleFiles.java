@@ -1,6 +1,5 @@
 package bookingsystem.file;
 
-import bookingsystem.BookingSystem;
 import bookingsystem.layout.Reserve;
 import bookingsystem.layout.SeatLayout;
 import bookingsystem.layout.SetReservation;

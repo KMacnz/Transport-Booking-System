@@ -3,12 +3,7 @@ package bookingsystem.gui;
 import bookingsystem.layout.Column;
 import bookingsystem.layout.Row;
 import bookingsystem.layout.SetReservation;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import java.awt.*;
 import javax.swing.*;
 
 public class TramBookingPanel extends JPanel{

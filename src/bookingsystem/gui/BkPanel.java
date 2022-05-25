@@ -1,9 +1,7 @@
 package bookingsystem.gui;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
 
 public class BkPanel extends JPanel {
 

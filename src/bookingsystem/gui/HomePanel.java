@@ -1,11 +1,6 @@
 package bookingsystem.gui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import java.awt.*;
 import javax.swing.*;
 
 public class HomePanel extends JPanel {
@@ -52,12 +47,10 @@ public class HomePanel extends JPanel {
         boatBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
         boatBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         btnPanel.add(boatBtn);
-        boatBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                StartPanel.homePanel.setVisible(false);
-                StartPanel.boatBookingPanel.setVisible(true);
-            }
+        // add listener
+        boatBtn.addActionListener(e -> {
+            StartPanel.homePanel.setVisible(false);
+            StartPanel.boatBookingPanel.setVisible(true);
         });
 
         // Bus Button
@@ -67,12 +60,10 @@ public class HomePanel extends JPanel {
         busBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
         busBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         btnPanel.add(busBtn);
-        busBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                StartPanel.homePanel.setVisible(false);
-                StartPanel.busBookingPanel.setVisible(true);
-            }
+        // add listener
+        busBtn.addActionListener(e -> {
+            StartPanel.homePanel.setVisible(false);
+            StartPanel.busBookingPanel.setVisible(true);
         });
 
         // Tram Button
@@ -82,12 +73,10 @@ public class HomePanel extends JPanel {
         tramBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
         tramBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         btnPanel.add(tramBtn);
-        tramBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                StartPanel.homePanel.setVisible(false);
-                StartPanel.tramBookingPanel.setVisible(true);
-            }
+        // add listener
+        tramBtn.addActionListener(e -> {
+            StartPanel.homePanel.setVisible(false);
+            StartPanel.tramBookingPanel.setVisible(true);
         });
 
         JPanel btnPanel2 = new JPanel();

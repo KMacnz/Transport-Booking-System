@@ -3,14 +3,14 @@ package bookingsystem.gui;
 import java.sql.*;
 import java.util.Random;
 
-public class UserInfo {
+public class Database {
 
     private static final String URL = "jdbc:derby:BookingSys_Ebd; create=true";
     private static final String USER_NAME = "pdc";
     private static final String PASSWORD = "pdc";
     public static int id;
     
-    private Connection conn;
+    public static Connection conn;
 
     public void dbsetup() {
         try {
@@ -18,15 +18,15 @@ public class UserInfo {
             Statement statement = conn.createStatement();
 
             //REMOVE ONCE DONE
-//            statement.executeUpdate("DROP TABLE userInfo");
+            statement.executeUpdate("DROP TABLE userInfo");
 
             if (!checkTableExisting("userInfo")) {
-                statement.executeUpdate("CREATE TABLE userInfo(userid INTEGER, seats VARCHAR(100))");
+                statement.executeUpdate("CREATE TABLE userInfo(userid INTEGER, bus VARCHAR(100), boat VARCHAR(100), tram VARCHAR(100))");
                 System.out.println("Create Table userInfo");
             }
 
-            statement.executeUpdate("INSERT INTO userInfo VALUES(1, 'testytest')");
-            statement.executeUpdate("INSERT INTO userInfo VALUES(2, 'testttttt')");
+            statement.executeUpdate("INSERT INTO userInfo VALUES(123456, 'testbus', 'testboat', 'testtram')");
+            statement.executeUpdate("INSERT INTO userInfo VALUES(987654, 'testtttt1', 'testtttt2', 'testtttt3')");
             System.out.println("Insert data");
 
             statement.close();
@@ -48,6 +48,7 @@ public class UserInfo {
                     break;
                 }
             }
+            rs.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -56,7 +57,7 @@ public class UserInfo {
     
     public void close() {
         try {
-            if (this.conn != null) {
+            if (conn != null) {
                 conn.close();
             }
         } catch(SQLException e) {
@@ -104,21 +105,43 @@ public class UserInfo {
         } 
     }
     
-    
+    public void printRecipt(int oldID) {
+        
+        try {
+            Statement statement = conn.createStatement();
+
+            ResultSet rs = statement.executeQuery("SELECT * FROM userInfo WHERE userid = " + oldID);
+            while (rs.next()) {
+//                System.out.println(rs.getMetaData().getColumnName(2));
+                int userNum = rs.getInt("userid");
+                String userbus = rs.getString("bus");
+                String userboat = rs.getString("boat");
+                String usertram = rs.getString("tram");
+                
+                
+                System.out.println("ID: " + userNum + " Seats: " + userbus + " " + userboat + " " + usertram);
+            }
+            statement.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } 
+    }
     
     
     
     public static void main(String[] args){
-        UserInfo dbManager = new UserInfo();
+        Database dbManager = new Database();
 
         System.out.println("SETTING UP DATABASE");
         dbManager.dbsetup();
-        System.out.println("\nCHECKING ID");
-        dbManager.getNumber();
-        System.out.println("\nSave ID");
-        dbManager.saveData("amongus");
-        System.out.println("\nCHECKING ID");
-        dbManager.getNumber();
+//        System.out.println("\nCHECKING ID");
+//        dbManager.getNumber();
+//        System.out.println("\nSave ID");
+//        dbManager.saveData("");
+//        System.out.println("\nCHECKING ID 2");
+//        dbManager.getNumber();
+        System.out.println("Print Recipt");
+        dbManager.printRecipt(123456);
         
         dbManager.close();
     }

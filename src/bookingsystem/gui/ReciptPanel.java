@@ -1,6 +1,5 @@
 package bookingsystem.gui;
 
-import bookingsystem.file.PrintRecipt;
 import java.awt.*;
 import javax.swing.*;
 
@@ -80,11 +79,10 @@ public class ReciptPanel extends JPanel{
         
         
         goBtn.addActionListener(e -> {
-            PrintRecipt printRecipt = new PrintRecipt();
-            String id = userTypeFld.getText().trim();
-            id = printRecipt.print(id);
-        });
-        
-        
+            Database dbManager = new Database();
+            int oldID = Integer.valueOf(userTypeFld.getText().trim());
+            System.out.println("GO TO DATABASE THING " + oldID);
+            dbManager.printRecipt(oldID);
+        }); 
     }
 }

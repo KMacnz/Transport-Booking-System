@@ -27,6 +27,11 @@ public class BookSysGui extends JFrame {
     public static void main(String args[]) {
         SetReservation booking = new SetReservation();
         booking.setUpReservations();
+        
+        
+        Database dbManager = new Database();
+        dbManager.dbsetup();
+        System.out.println("Data base setup complete");
 
         BookSysGui bsgui = new BookSysGui();
         bsgui.setVisible(true);

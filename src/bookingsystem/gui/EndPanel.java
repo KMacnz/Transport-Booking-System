@@ -53,8 +53,10 @@ public class EndPanel extends JPanel {
 
         // add listener
         noSaveBtn.addActionListener(e -> {
+            Database dbManager = new Database();
             // close gui
             System.exit(0);
+            dbManager.close();
         });
 
         grid.gridx = 1;

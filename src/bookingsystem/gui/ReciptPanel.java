@@ -41,7 +41,7 @@ public class ReciptPanel extends JPanel{
         reciptTxtFld = new JTextArea();
         reciptTxtFld.setEditable(false);
         reciptTxtFld.setFont(new java.awt.Font("Monospaced", 0, 15));
-        reciptTxtFld.setPreferredSize(new Dimension(200, 150));
+        reciptTxtFld.setPreferredSize(new Dimension(400, 150));
         reciptTxtFld.setLineWrap(true);
         
         grid.gridx = 1;
@@ -81,7 +81,6 @@ public class ReciptPanel extends JPanel{
         goBtn.addActionListener(e -> {
             Database dbManager = new Database();
             int oldID = Integer.valueOf(userTypeFld.getText().trim());
-            System.out.println("GO TO DATABASE THING " + oldID);
             dbManager.printRecipt(oldID);
         }); 
     }

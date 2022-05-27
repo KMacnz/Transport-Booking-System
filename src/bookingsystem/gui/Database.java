@@ -9,7 +9,7 @@ public class Database {
     private static final String USER_NAME = "pdc";
     private static final String PASSWORD = "pdc";
     public static int id;
-    
+
     public static Connection conn;
 
     public void dbsetup() {
@@ -54,20 +54,20 @@ public class Database {
         }
         return exists;
     }
-    
+
     public void close() {
         try {
             if (conn != null) {
                 conn.close();
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     private boolean checkID(int id) {
         boolean exists = false;
-        
+
         try {
             Statement statement = conn.createStatement();
 
@@ -80,14 +80,14 @@ public class Database {
             statement.close();
         } catch (SQLException ex) {
             System.out.println(ex);
-        } 
+        }
         return exists;
     }
 
     public int getNumber() {
         Random rand = new Random();
         id = rand.nextInt(1000000 - 100000) + 100000;
-        
+
         //if it already exists it generates a new number
         while (checkID(id)) {
             id = rand.nextInt(1000000 - 100000) + 100000;
@@ -102,47 +102,52 @@ public class Database {
             statement.executeUpdate("INSERT INTO UserInfo " + "VALUES(" + id + ", '" + booking + "')");
         } catch (SQLException ex) {
             System.out.println(ex);
-        } 
+        }
     }
-    
+
     public void printRecipt(int oldID) {
-        
+
         try {
             Statement statement = conn.createStatement();
 
             ResultSet rs = statement.executeQuery("SELECT * FROM userInfo WHERE userid = " + oldID);
+            
+            int size = 0;
+            
             while (rs.next()) {
-//                System.out.println(rs.getMetaData().getColumnName(2));
                 int userNum = rs.getInt("userid");
                 String userbus = rs.getString("bus");
                 String userboat = rs.getString("boat");
                 String usertram = rs.getString("tram");
-                
-                
-                System.out.println("ID: " + userNum + " Seats: " + userbus + " " + userboat + " " + usertram);
+
+                StartPanel.reciptPanel.reciptTxtFld.setText("ID: " + userNum + " \n\nBus: " + userbus + "\nBoat: " + userboat + "\nTram: " + usertram);
+                size++;
             }
+            
+            if (size == 0) {
+                StartPanel.reciptPanel.reciptTxtFld.setText("ID does not exist");
+            }
+            
             statement.close();
         } catch (SQLException ex) {
             System.out.println(ex);
-        } 
+        }
     }
-    
-    
-    
-    public static void main(String[] args){
-        Database dbManager = new Database();
 
-        System.out.println("SETTING UP DATABASE");
-        dbManager.dbsetup();
-//        System.out.println("\nCHECKING ID");
-//        dbManager.getNumber();
-//        System.out.println("\nSave ID");
-//        dbManager.saveData("");
-//        System.out.println("\nCHECKING ID 2");
-//        dbManager.getNumber();
-        System.out.println("Print Recipt");
-        dbManager.printRecipt(123456);
-        
-        dbManager.close();
-    }
+//    public static void main(String[] args) {
+//        Database dbManager = new Database();
+//
+//        System.out.println("SETTING UP DATABASE");
+//        dbManager.dbsetup();
+////        System.out.println("\nCHECKING ID");
+////        dbManager.getNumber();
+////        System.out.println("\nSave ID");
+////        dbManager.saveData("");
+////        System.out.println("\nCHECKING ID 2");
+////        dbManager.getNumber();
+//        System.out.println("Print Recipt");
+//        dbManager.printRecipt(123456);
+//
+//        dbManager.close();
+//    }
 }

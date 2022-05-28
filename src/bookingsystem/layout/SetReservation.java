@@ -2,6 +2,7 @@ package bookingsystem.layout;
 
 import bookingsystem.util.Cart;
 import bookingsystem.file.VehicleFiles;
+import bookingsystem.gui.Database;
 
 public class SetReservation {
 
@@ -15,7 +16,9 @@ public class SetReservation {
 
     //goes to vehicle files and gets my seats from the files and stores them at the start of the project
     public void setUpReservations() {
-        reserveBus = vehicleFiles.getSeats(new SeatLayout(8, 4), "./resources/Seatsbus.txt");
+        Database dbManager = new Database();
+        reserveBus = dbManager.getBusSeats(new SeatLayout(8, 4));
+//        reserveBus = vehicleFiles.getSeats(new SeatLayout(8, 4), "./resources/Seatsbus.txt");
         reserveBoat = vehicleFiles.getSeats(new SeatLayout(7, 7), "./resources/Seatsboat.txt");
         reserveTram = vehicleFiles.getSeats(new SeatLayout(8, 3), "./resources/Seatstram.txt");
     }
@@ -37,21 +40,22 @@ public class SetReservation {
         tramBooking = saveTram(tramBooking, tRow, tCol);
         Cart.addTramCart();
     }
+
     // saves the seat to a string and takes it to the add cart method
     public String saveBus(String busBooking, int bRow, char bCol) {
-        busBooking = ("Bus (" + bRow + "," + bCol + ")");
+        busBooking = ("(" + bRow + "," + bCol + ")");
         return busBooking;
     }
 
     // saves the seat to a string and takes it to the add cart method
     public String saveBoat(String boatBooking, int btRow, char btColumn) {
-        boatBooking = ("Ferry (" + btRow + "," + btColumn + ")");
+        boatBooking = ("(" + btRow + "," + btColumn + ")");
         return boatBooking;
     }
 
     // saves the seat to a string and takes it to the add cart method
     public String saveTram(String tramBooking, int tRow, char tColumn) {
-        tramBooking = ("Tram (" + tRow + "," + tColumn + ")");
+        tramBooking = ("(" + tRow + "," + tColumn + ")");
         return tramBooking;
     }
 }

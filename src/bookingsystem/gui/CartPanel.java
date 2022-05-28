@@ -5,11 +5,11 @@ import java.awt.*;
 import javax.swing.*;
 
 public class CartPanel extends JPanel {
-    
+
     public JTextField reciptTxtFld;
-    
+
     GridBagConstraints grid = new GridBagConstraints();
-    
+
     public CartPanel() {
         JPanel cartPanel = new JPanel();
         cartPanel.setLayout(new GridBagLayout());
@@ -24,17 +24,17 @@ public class CartPanel extends JPanel {
         grid.gridy = 1;
         grid.ipady = 25;
         cartPanel.add(cartLabel, grid);
-        
+
         cartLabel.setFont(new java.awt.Font("Kannada MN", 1, 24));
         cartLabel.setForeground(new java.awt.Color(0, 0, 0));
         cartLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        
+
         JTextArea cartTxtFld = new JTextArea("Your cart is currently empty");
         cartTxtFld.setEditable(false);
         cartTxtFld.setFont(new java.awt.Font("Monospaced", 0, 15));
         cartTxtFld.setPreferredSize(new Dimension(300, 200));
         cartTxtFld.setLineWrap(true);
-        
+
         grid.gridx = 1;
         grid.gridy = 2;
         cartPanel.add(cartTxtFld, grid);
@@ -50,22 +50,22 @@ public class CartPanel extends JPanel {
             StartPanel.cartPanel.setVisible(false);
             StartPanel.startPanel.setVisible(true);
         });
-        
+
         grid.gridx = 1;
         grid.gridy = 3;
         cartPanel.add(backBtn, grid);
-        
+
         if (!(Cart.busCart.isEmpty() && Cart.boatCart.isEmpty() && Cart.tramCart.isEmpty())) {
             cartTxtFld.setText("");
-        if (!(Cart.busCart.isEmpty())) {
-            cartTxtFld.append(Cart.busCart.toString() + "\n");
-        } 
-        if (!(Cart.boatCart.isEmpty())) {
-            cartTxtFld.append(Cart.boatCart.toString() + "\n");
-        } 
-        if (!(Cart.tramCart.isEmpty())) {
-            cartTxtFld.append(Cart.tramCart.toString() + "\n");
+            if (!(Cart.busCart.isEmpty())) {
+                cartTxtFld.append("Bus: " + Cart.busCart.toString() + "\n\n");
+            }
+            if (!(Cart.boatCart.isEmpty())) {
+                cartTxtFld.append("Boat: " + Cart.boatCart.toString() + "\n\n");
+            }
+            if (!(Cart.tramCart.isEmpty())) {
+                cartTxtFld.append("Tram: " + Cart.tramCart.toString());
+            }
         }
-    }
     }
 }

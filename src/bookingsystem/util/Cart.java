@@ -12,16 +12,13 @@ public class Cart {
 
     public static void addBusCart() {
         busCart.add(SetReservation.busBooking);
-        System.out.println(busCart);
     }
 
     public static void addBoatCart() {
         boatCart.add(SetReservation.boatBooking);
-        System.out.println(boatCart);
     }
 
     public static void addTramCart() {
         tramCart.add(SetReservation.tramBooking);
-        System.out.println(tramCart);
     }  
 }

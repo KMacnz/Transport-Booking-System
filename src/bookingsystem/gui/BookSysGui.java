@@ -2,6 +2,9 @@ package bookingsystem.gui;
 
 import javax.swing.JFrame;
 import bookingsystem.layout.SetReservation;
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BookSysGui extends JFrame {
 
@@ -25,13 +28,14 @@ public class BookSysGui extends JFrame {
     }
 
     public static void main(String args[]) {
-        SetReservation booking = new SetReservation();
-        booking.setUpReservations();
-        
-        
         Database dbManager = new Database();
         dbManager.dbsetup();
         System.out.println("Data base setup complete");
+        
+        SetReservation booking = new SetReservation();
+        booking.setUpReservations();
+        
+        System.out.println("Reservation setup");
 
         BookSysGui bsgui = new BookSysGui();
         bsgui.setVisible(true);

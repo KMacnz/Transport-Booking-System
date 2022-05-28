@@ -1,5 +1,10 @@
 package bookingsystem.gui;
 
+import bookingsystem.layout.Column;
+import bookingsystem.layout.Reserve;
+import bookingsystem.layout.Row;
+import bookingsystem.layout.SeatLayout;
+import bookingsystem.layout.SetReservation;
 import java.sql.*;
 import java.util.Random;
 
@@ -25,8 +30,8 @@ public class Database {
                 System.out.println("Create Table userInfo");
             }
 
-            statement.executeUpdate("INSERT INTO userInfo VALUES(123456, 'testbus', 'testboat', 'testtram')");
-            statement.executeUpdate("INSERT INTO userInfo VALUES(987654, 'testtttt1', 'testtttt2', 'testtttt3')");
+            statement.executeUpdate("INSERT INTO userInfo VALUES(123456, '4,D : 6,B', 'testboat', 'testtram')");
+            statement.executeUpdate("INSERT INTO userInfo VALUES(987654, '2,A', 'testtttt2', 'testtttt3')");
             System.out.println("Insert data");
 
             statement.close();
@@ -133,21 +138,70 @@ public class Database {
             System.out.println(ex);
         }
     }
+    
+    public Reserve getBusSeats(SeatLayout seatLayout) {
+        
+        Reserve reserve = null;
+        
+        try {
+            // create reservation
+            reserve = new Reserve(seatLayout);
+            
+            Statement statement = conn.createStatement();
 
-//    public static void main(String[] args) {
-//        Database dbManager = new Database();
-//
-//        System.out.println("SETTING UP DATABASE");
-//        dbManager.dbsetup();
-////        System.out.println("\nCHECKING ID");
-////        dbManager.getNumber();
-////        System.out.println("\nSave ID");
-////        dbManager.saveData("");
-////        System.out.println("\nCHECKING ID 2");
-////        dbManager.getNumber();
-//        System.out.println("Print Recipt");
-//        dbManager.printRecipt(123456);
-//
-//        dbManager.close();
-//    }
+            ResultSet rs = statement.executeQuery("SELECT bus FROM userInfo");
+            
+            while (rs.next()) {
+                String userbus = rs.getString("bus");
+
+                System.out.println("Row: " + userbus);
+                
+                
+                String[] seatChar = userbus.split(": ");
+                for (String eachseat : seatChar) {
+                    System.out.println(eachseat);
+                    
+                    String[] eachSeatChar = eachseat.split(",");
+                    int row = Integer.valueOf(String.valueOf(eachSeatChar[0]));;
+                    char col = eachSeatChar[1].charAt(0);
+                    
+                    System.out.println("row: " + row + " col: " + col);
+                    SetReservation setReservation = new SetReservation();
+                    reserve.reserveSeat(new Row(row), new Column(col));
+               
+            }
+            }
+            
+            
+            
+            // create reservation
+            reserve = new Reserve(seatLayout);
+            
+            // initialise row counter
+            int rowCount = 0;
+            
+            
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return reserve;
+    }
+
+    public static void main(String[] args) {
+        Database dbManager = new Database();
+
+        System.out.println("SETTING UP DATABASE");
+        dbManager.dbsetup();
+//        System.out.println("\nCHECKING ID");
+//        dbManager.getNumber();
+//        System.out.println("\nSave ID");
+//        dbManager.saveData("");
+//        System.out.println("\nCHECKING ID 2");
+//        dbManager.getNumber();
+          dbManager.getBusSeats(new SeatLayout(8, 4));
+
+        dbManager.close();
+    }
 }

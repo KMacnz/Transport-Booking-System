@@ -35,19 +35,18 @@ public class EndPanel extends JPanel {
         cartTxtFld.setLineWrap(true);
         cartTxtFld.setOpaque(false);
         cartTxtFld.setVisible(false);
-        
-        
+
         cartTxtFld.setText("Your ID is: " + BookSysGui.userID + "\n\n");
-            if (!(Cart.busCart.isEmpty())) {
-                cartTxtFld.append("Bus: " + Cart.busCart.toString() + "\n\n");
-            }
-            if (!(Cart.boatCart.isEmpty())) {
-                cartTxtFld.append("Boat: " + Cart.boatCart.toString() + "\n\n");
-            }
-            if (!(Cart.tramCart.isEmpty())) {
-                cartTxtFld.append("Tram: " + Cart.tramCart.toString() + "\n\n");
-            }
-            cartTxtFld.append("\nKeep your ID to view ur order in the future");
+        if (!(Cart.busCart.isEmpty())) {
+            cartTxtFld.append("Bus: " + Cart.busCart.toString() + "\n\n");
+        }
+        if (!(Cart.boatCart.isEmpty())) {
+            cartTxtFld.append("Boat: " + Cart.boatCart.toString() + "\n\n");
+        }
+        if (!(Cart.tramCart.isEmpty())) {
+            cartTxtFld.append("Tram: " + Cart.tramCart.toString() + "\n\n");
+        }
+        cartTxtFld.append("\nKeep your ID to view ur order in the future");
 
         grid.gridx = 1;
         grid.gridy = 2;
@@ -70,7 +69,7 @@ public class EndPanel extends JPanel {
             StartPanel.endPanel.setVisible(false);
             StartPanel.startPanel.setVisible(true);
         });
-        
+
         // Save Button
         ImageIcon saveimg = new ImageIcon("./resources/image/save.png");
         JButton saveBtn = new JButton("Save Booking", saveimg);
@@ -115,32 +114,39 @@ public class EndPanel extends JPanel {
             grid.gridx = 1;
             grid.gridy = 4;
             endPanel.add(endLabel, grid);
-            
-            String busData = "";
-            for (String seat : Cart.busCart) {
-                busData += seat.trim().replace("(", "").replace(")", "") + " : ";
-            }
-            busData = busData.substring(0, busData.length() - 3);
-            
-            String boatData = "";
-            for (String seat : Cart.boatCart) {
-                boatData += seat.trim().replace("(", "").replace(")", "") + " : ";
-            }
-            boatData = boatData.substring(0, boatData.length() - 3);
-            
-            String tramData = "";
-            for (String seat : Cart.tramCart) {
-                tramData += seat.trim().replace("(", "").replace(")", "") + " : ";
-            }
-            tramData = tramData.substring(0, tramData.length() - 3);
-            
-            
-            
-            
-            Database database = new Database();
-            database.saveData(busData, boatData, tramData);
-//            database.seeData();
 
+            String busData = "";
+            String boatData = "";
+            String tramData = "";
+
+            if (!(Cart.busCart.isEmpty())) {
+                for (String seat : Cart.busCart) {
+                    busData += seat.trim().replace("(", "").replace(")", "") + " : ";
+                }
+                busData = busData.substring(0, busData.length() - 3);
+            }
+
+            if (!(Cart.boatCart.isEmpty())) {
+                for (String seat : Cart.boatCart) {
+                    boatData += seat.trim().replace("(", "").replace(")", "") + " : ";
+                }
+                boatData = boatData.substring(0, boatData.length() - 3);
+            }
+
+            if (!(Cart.tramCart.isEmpty())) {
+                for (String seat : Cart.tramCart) {
+                    tramData += seat.trim().replace("(", "").replace(")", "") + " : ";
+                }
+                tramData = tramData.substring(0, tramData.length() - 3);
+            } else {
+                tramData = null;
+            }
+
+            Database database = new Database();
+            System.out.println("Saving Data");
+            database.saveData(busData, boatData, tramData);
+            System.out.println("View Data");
+            database.seeData();
         });
     }
 }

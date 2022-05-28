@@ -116,13 +116,28 @@ public class BoatBookingPanel extends JPanel{
             StartPanel.boatBookingPanel.setVisible(false);
             StartPanel.startPanel.setVisible(true);
         });
+        
+        // Cart Button
+        ImageIcon cartImg = new ImageIcon("./resources/image/cart.png");
+        JButton vcartBtn = new JButton("View Cart", cartImg);
+        vcartBtn.setBorderPainted(false);
+        vcartBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        vcartBtn.setHorizontalTextPosition(SwingConstants.CENTER);
+
+        // add listener
+        vcartBtn.addActionListener(e -> {
+            StartPanel.boatBookingPanel.setVisible(false);
+            StartPanel.cartPanel.updateTxt();
+            StartPanel.cartPanel.setVisible(true);
+        });
 
         seatPanel.add(drawPanel);
-        seatPanel.add(Box.createHorizontalStrut(10));
+        seatPanel.add(Box.createHorizontalStrut(5));
         bookerPanel.add(seatTxtFld);
         bookerPanel.add(bottomPanel);
         bottomPanel.add(cartBtn);
         bottomPanel.add(backBtn);
+        bottomPanel.add(vcartBtn);
         seatPanel.add(bookerPanel);
 
         grid.gridx = 1;
@@ -133,7 +148,7 @@ public class BoatBookingPanel extends JPanel{
     public class DrawPanel extends JPanel {
 
         public DrawPanel() {
-            super.setPreferredSize(new Dimension(312, 312));
+            super.setPreferredSize(new Dimension(263, 263));
             super.setOpaque(false);
         }
 
@@ -143,7 +158,7 @@ public class BoatBookingPanel extends JPanel{
 
             for (int i = 0; i < eachSeat.length; i++) {
                 for (int j = 0; j < eachSeat[i].length; j++) {
-                    eachSeat[i][j].setBounds(i * 42, j * 42, 45, 45);
+                    eachSeat[i][j].setBounds(i * 35, j * 35, 38, 38);
                 }
             }
         }

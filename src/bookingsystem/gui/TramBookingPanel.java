@@ -116,12 +116,27 @@ public class TramBookingPanel extends JPanel{
             StartPanel.startPanel.setVisible(true);
         });
 
+        // Cart Button
+        ImageIcon cartImg = new ImageIcon("./resources/image/cart.png");
+        JButton vcartBtn = new JButton("View Cart", cartImg);
+        vcartBtn.setBorderPainted(false);
+        vcartBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        vcartBtn.setHorizontalTextPosition(SwingConstants.CENTER);
+
+        // add listener
+        vcartBtn.addActionListener(e -> {
+            StartPanel.tramBookingPanel.setVisible(false);
+            StartPanel.cartPanel.updateTxt();
+            StartPanel.cartPanel.setVisible(true);
+        });
+        
         seatPanel.add(drawPanel);
         seatPanel.add(Box.createHorizontalStrut(50));
         bookerPanel.add(seatTxtFld);
         bookerPanel.add(bottomPanel);
         bottomPanel.add(cartBtn);
         bottomPanel.add(backBtn);
+        bottomPanel.add(vcartBtn);
         seatPanel.add(bookerPanel);
 
         grid.gridx = 1;

@@ -162,7 +162,7 @@ public class Database {
         }
         return reserve;
     }
-    
+
     public Reserve getBoatSeats(SeatLayout seatLayout) {
 
         Reserve reserve = null;
@@ -197,7 +197,7 @@ public class Database {
         }
         return reserve;
     }
-    
+
     public Reserve getTramSeats(SeatLayout seatLayout) {
 
         Reserve reserve = null;
@@ -233,28 +233,32 @@ public class Database {
         return reserve;
     }
 
-    public void saveData(String booking) {
+    public void saveData(String busdata, String boatdata, String tramdata) {
         try {
             Statement statement = conn.createStatement();
-            statement.executeUpdate("INSERT INTO UserInfo " + "VALUES(" + id + ", '" + booking + "')");
+            statement.executeUpdate("INSERT INTO userInfo VALUES(" + id + ", '" + busdata + "', '" + boatdata + "', '" + tramdata + "')");
+
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
-    
-//    public static void main(String[] args) {
-//        Database dbManager = new Database();
-//
-//        System.out.println("SETTING UP DATABASE");
-//        dbManager.dbsetup();
-////        System.out.println("\nCHECKING ID");
-////        dbManager.getNumber();
-////        System.out.println("\nSave ID");
-////        dbManager.saveData("");
-////        System.out.println("\nCHECKING ID 2");
-////        dbManager.getNumber();
-//          dbManager.getBusSeats(new SeatLayout(8, 4));
-//
-//        dbManager.close();
-//    }
+
+    public void seeData() {
+        try {
+            Statement statement = conn.createStatement();
+
+            ResultSet rs = statement.executeQuery("SELECT * FROM userInfo");
+
+            while (rs.next()) {
+                int userNum = rs.getInt("userid");
+                String userbus = rs.getString("bus");
+                String userboat = rs.getString("boat");
+                String usertram = rs.getString("tram");
+
+                System.out.println("ID: " + userNum + " Bus: " + userbus + " Boat: " + userboat + " Tram: " + usertram);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
 }

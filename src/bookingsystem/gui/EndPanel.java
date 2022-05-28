@@ -136,9 +136,10 @@ public class EndPanel extends JPanel {
             
             
             
-            System.out.println(busData);
-            System.out.println(boatData);
-            System.out.println(tramData);
+            
+            Database database = new Database();
+            database.saveData(busData, boatData, tramData);
+//            database.seeData();
 
         });
     }

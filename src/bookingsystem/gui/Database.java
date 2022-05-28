@@ -31,7 +31,7 @@ public class Database {
             }
 
             statement.executeUpdate("INSERT INTO userInfo VALUES(123456, '4,D : 6,B', 'testboat', 'testtram')");
-            statement.executeUpdate("INSERT INTO userInfo VALUES(987654, '2,A', 'testtttt2', 'testtttt3')");
+            statement.executeUpdate("INSERT INTO userInfo VALUES(987654, '2,A : 2,C', 'testtttt2', 'testtttt3')");
             System.out.println("Insert data");
 
             statement.close();
@@ -116,9 +116,9 @@ public class Database {
             Statement statement = conn.createStatement();
 
             ResultSet rs = statement.executeQuery("SELECT * FROM userInfo WHERE userid = " + oldID);
-            
+
             int size = 0;
-            
+
             while (rs.next()) {
                 int userNum = rs.getInt("userid");
                 String userbus = rs.getString("bus");
@@ -128,80 +128,73 @@ public class Database {
                 StartPanel.reciptPanel.reciptTxtFld.setText("ID: " + userNum + " \n\nBus: " + userbus + "\nBoat: " + userboat + "\nTram: " + usertram);
                 size++;
             }
-            
+
             if (size == 0) {
                 StartPanel.reciptPanel.reciptTxtFld.setText("ID does not exist");
             }
-            
+
             statement.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
-    
+
     public Reserve getBusSeats(SeatLayout seatLayout) {
-        
+
         Reserve reserve = null;
-        
+
         try {
             // create reservation
             reserve = new Reserve(seatLayout);
-            
+
             Statement statement = conn.createStatement();
 
             ResultSet rs = statement.executeQuery("SELECT bus FROM userInfo");
-            
+
             while (rs.next()) {
                 String userbus = rs.getString("bus");
 
                 System.out.println("Row: " + userbus);
-                
-                
+
                 String[] seatChar = userbus.split(": ");
                 for (String eachseat : seatChar) {
                     System.out.println(eachseat);
-                    
+
                     String[] eachSeatChar = eachseat.split(",");
                     int row = Integer.valueOf(String.valueOf(eachSeatChar[0]));;
                     char col = eachSeatChar[1].charAt(0);
-                    
+
                     System.out.println("row: " + row + " col: " + col);
                     SetReservation setReservation = new SetReservation();
                     reserve.reserveSeat(new Row(row), new Column(col));
-               
+                }
             }
-            }
-            
-            
-            
-            // create reservation
-            reserve = new Reserve(seatLayout);
-            
-            // initialise row counter
-            int rowCount = 0;
-            
-            
-            
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        
+
+//        if (reserve != null) {
+//            if (seatLayout.getNumberOfRows() * seatLayout.getNumberOfColumns() == 32) {
+//                reserve.setFilled(true);
+//                reserve = new Reserve(new SeatLayout(8, 4));
+//            }
+//        }
         return reserve;
     }
 
-    public static void main(String[] args) {
-        Database dbManager = new Database();
-
-        System.out.println("SETTING UP DATABASE");
-        dbManager.dbsetup();
-//        System.out.println("\nCHECKING ID");
-//        dbManager.getNumber();
-//        System.out.println("\nSave ID");
-//        dbManager.saveData("");
-//        System.out.println("\nCHECKING ID 2");
-//        dbManager.getNumber();
-          dbManager.getBusSeats(new SeatLayout(8, 4));
-
-        dbManager.close();
-    }
+//    public static void main(String[] args) {
+//        Database dbManager = new Database();
+//
+//        System.out.println("SETTING UP DATABASE");
+//        dbManager.dbsetup();
+////        System.out.println("\nCHECKING ID");
+////        dbManager.getNumber();
+////        System.out.println("\nSave ID");
+////        dbManager.saveData("");
+////        System.out.println("\nCHECKING ID 2");
+////        dbManager.getNumber();
+//          dbManager.getBusSeats(new SeatLayout(8, 4));
+//
+//        dbManager.close();
+//    }
 }

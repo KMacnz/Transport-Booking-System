@@ -14,7 +14,6 @@ public class StartPanel extends JPanel {
     public static TramBookingPanel tramBookingPanel;
     public static ReciptPanel reciptPanel;
     public static CartPanel cartPanel;
-
     public static EndPanel endPanel;
 
     public StartPanel() {
@@ -38,6 +37,10 @@ public class StartPanel extends JPanel {
         reciptPanel = new ReciptPanel();
         add(reciptPanel);
         reciptPanel.setVisible(false);
+
+        cartPanel = new CartPanel();
+        add(cartPanel);
+        cartPanel.setVisible(false);
 
         startPanel = new JPanel();
         startPanel.setLayout(new GridBagLayout());
@@ -113,7 +116,7 @@ public class StartPanel extends JPanel {
 
         // Quit Button
         ImageIcon quitimg = new ImageIcon("./resources/image/quit.png");
-        JButton quitBtn = new JButton("Quit", quitimg);
+        JButton quitBtn = new JButton("Save & Quit", quitimg);
         quitBtn.setBorderPainted(false);
         quitBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
         quitBtn.setHorizontalTextPosition(SwingConstants.CENTER);

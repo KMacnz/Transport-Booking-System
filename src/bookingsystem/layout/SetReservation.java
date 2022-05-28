@@ -18,9 +18,8 @@ public class SetReservation {
     public void setUpReservations() {
         Database dbManager = new Database();
         reserveBus = dbManager.getBusSeats(new SeatLayout(8, 4));
-//        reserveBus = vehicleFiles.getSeats(new SeatLayout(8, 4), "./resources/Seatsbus.txt");
-        reserveBoat = vehicleFiles.getSeats(new SeatLayout(7, 7), "./resources/Seatsboat.txt");
-        reserveTram = vehicleFiles.getSeats(new SeatLayout(8, 3), "./resources/Seatstram.txt");
+        reserveBoat = dbManager.getBoatSeats(new SeatLayout(7, 7));
+        reserveTram = dbManager.getTramSeats(new SeatLayout(8, 3));
     }
 
     public void reserveBus(char bCol, int bRow) {

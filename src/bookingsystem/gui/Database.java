@@ -4,7 +4,6 @@ import bookingsystem.layout.Column;
 import bookingsystem.layout.Reserve;
 import bookingsystem.layout.Row;
 import bookingsystem.layout.SeatLayout;
-import bookingsystem.layout.SetReservation;
 import java.sql.*;
 import java.util.Random;
 
@@ -30,8 +29,8 @@ public class Database {
                 System.out.println("Create Table userInfo");
             }
 
-            statement.executeUpdate("INSERT INTO userInfo VALUES(123456, '4,D : 6,B', 'testboat', 'testtram')");
-            statement.executeUpdate("INSERT INTO userInfo VALUES(987654, '2,A : 2,C', 'testtttt2', 'testtttt3')");
+            statement.executeUpdate("INSERT INTO userInfo VALUES(123456, '4,D : 6,B', '7,F', '8,B : 5,C')");
+            statement.executeUpdate("INSERT INTO userInfo VALUES(987654, '2,A : 2,C', '1,A : 3,C : 6,A', '1,A : 3,B')");
             System.out.println("Insert data");
 
             statement.close();
@@ -165,20 +164,82 @@ public class Database {
                     char col = eachSeatChar[1].charAt(0);
 
                     System.out.println("row: " + row + " col: " + col);
-                    SetReservation setReservation = new SetReservation();
                     reserve.reserveSeat(new Row(row), new Column(col));
                 }
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
+        return reserve;
+    }
+    
+    public Reserve getBoatSeats(SeatLayout seatLayout) {
 
-//        if (reserve != null) {
-//            if (seatLayout.getNumberOfRows() * seatLayout.getNumberOfColumns() == 32) {
-//                reserve.setFilled(true);
-//                reserve = new Reserve(new SeatLayout(8, 4));
-//            }
-//        }
+        Reserve reserve = null;
+
+        try {
+            // create reservation
+            reserve = new Reserve(seatLayout);
+
+            Statement statement = conn.createStatement();
+
+            ResultSet rs = statement.executeQuery("SELECT boat FROM userInfo");
+
+            while (rs.next()) {
+                String userboat = rs.getString("boat");
+
+                System.out.println("Row: " + userboat);
+
+                String[] seatChar = userboat.split(": ");
+                for (String eachseat : seatChar) {
+                    System.out.println(eachseat);
+
+                    String[] eachSeatChar = eachseat.split(",");
+                    int row = Integer.valueOf(String.valueOf(eachSeatChar[0]));;
+                    char col = eachSeatChar[1].charAt(0);
+
+                    System.out.println("row: " + row + " col: " + col);
+                    reserve.reserveSeat(new Row(row), new Column(col));
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return reserve;
+    }
+    
+    public Reserve getTramSeats(SeatLayout seatLayout) {
+
+        Reserve reserve = null;
+
+        try {
+            // create reservation
+            reserve = new Reserve(seatLayout);
+
+            Statement statement = conn.createStatement();
+
+            ResultSet rs = statement.executeQuery("SELECT tram FROM userInfo");
+
+            while (rs.next()) {
+                String usertram = rs.getString("tram");
+
+                System.out.println("Row: " + usertram);
+
+                String[] seatChar = usertram.split(": ");
+                for (String eachseat : seatChar) {
+                    System.out.println(eachseat);
+
+                    String[] eachSeatChar = eachseat.split(",");
+                    int row = Integer.valueOf(String.valueOf(eachSeatChar[0]));;
+                    char col = eachSeatChar[1].charAt(0);
+
+                    System.out.println("row: " + row + " col: " + col);
+                    reserve.reserveSeat(new Row(row), new Column(col));
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
         return reserve;
     }
 

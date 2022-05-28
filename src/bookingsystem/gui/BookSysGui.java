@@ -5,6 +5,8 @@ import bookingsystem.layout.SetReservation;
 
 public class BookSysGui extends JFrame {
 
+    static int userID;
+
     public BookSysGui() {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tour Booking System");
@@ -31,6 +33,9 @@ public class BookSysGui extends JFrame {
 
         SetReservation booking = new SetReservation();
         booking.setUpReservations();
+
+        userID = dbManager.getNumber();
+        System.out.println(userID);
 
         System.out.println("Reservation setup");
 

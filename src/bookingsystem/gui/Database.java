@@ -96,7 +96,6 @@ public class Database {
         while (checkID(id)) {
             id = rand.nextInt(1000000 - 100000) + 100000;
         }
-        System.out.println(id);
         return id;
     }
 

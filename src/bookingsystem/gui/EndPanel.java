@@ -115,6 +115,30 @@ public class EndPanel extends JPanel {
             grid.gridx = 1;
             grid.gridy = 4;
             endPanel.add(endLabel, grid);
+            
+            String busData = "";
+            for (String seat : Cart.busCart) {
+                busData += seat.trim().replace("(", "").replace(")", "") + " : ";
+            }
+            busData = busData.substring(0, busData.length() - 3);
+            
+            String boatData = "";
+            for (String seat : Cart.boatCart) {
+                boatData += seat.trim().replace("(", "").replace(")", "") + " : ";
+            }
+            boatData = boatData.substring(0, boatData.length() - 3);
+            
+            String tramData = "";
+            for (String seat : Cart.tramCart) {
+                tramData += seat.trim().replace("(", "").replace(")", "") + " : ";
+            }
+            tramData = tramData.substring(0, tramData.length() - 3);
+            
+            
+            
+            System.out.println(busData);
+            System.out.println(boatData);
+            System.out.println(tramData);
 
         });
     }

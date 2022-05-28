@@ -99,15 +99,6 @@ public class Database {
         return id;
     }
 
-    public void saveData(String booking) {
-        try {
-            Statement statement = conn.createStatement();
-            statement.executeUpdate("INSERT INTO UserInfo " + "VALUES(" + id + ", '" + booking + "')");
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-
     public void printRecipt(int oldID) {
 
         try {
@@ -242,6 +233,15 @@ public class Database {
         return reserve;
     }
 
+    public void saveData(String booking) {
+        try {
+            Statement statement = conn.createStatement();
+            statement.executeUpdate("INSERT INTO UserInfo " + "VALUES(" + id + ", '" + booking + "')");
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
 //    public static void main(String[] args) {
 //        Database dbManager = new Database();
 //

@@ -80,8 +80,15 @@ public class ReciptPanel extends JPanel{
         
         goBtn.addActionListener(e -> {
             Database dbManager = new Database();
-            int oldID = Integer.valueOf(userTypeFld.getText().trim());
+            int oldID = 0;
+            try {
+            oldID = Integer.valueOf(userTypeFld.getText().trim());
+            
             dbManager.printRecipt(oldID);
+            
+            } catch (Exception ex) {
+                reciptTxtFld.setText("Make sure your ID contains ONLY numbers");
+            }
         }); 
     }
 }

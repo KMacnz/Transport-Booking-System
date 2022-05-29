@@ -23,7 +23,6 @@ public class Database {
 
             //REMOVE ONCE DONE
 //            statement.executeUpdate("DROP TABLE userInfo");
-
             if (!checkTableExisting("userInfo")) {
                 statement.executeUpdate("CREATE TABLE userInfo(userid INTEGER, bus VARCHAR(100), boat VARCHAR(100), tram VARCHAR(100))");
                 System.out.println("Create Table userInfo");
@@ -147,19 +146,21 @@ public class Database {
 
                 String[] seatChar = userbus.split(": ");
                 for (String eachseat : seatChar) {
-                    System.out.println(eachseat);
 
-                    String[] eachSeatChar = eachseat.split(",");
-                    int row = Integer.valueOf(String.valueOf(eachSeatChar[0]));;
-                    char col = eachSeatChar[1].charAt(0);
+                    if (!eachseat.equals("null")) {
 
-                    System.out.println("row: " + row + " col: " + col);
-                    reserve.reserveSeat(new Row(row), new Column(col));
+                        String[] eachSeatChar = eachseat.split(",");
+                        int row = Integer.valueOf(String.valueOf(eachSeatChar[0]));;
+                        char col = eachSeatChar[1].charAt(0);
+
+                        reserve.reserveSeat(new Row(row), new Column(col));
+                    }
                 }
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
+
         return reserve;
     }
 
@@ -184,12 +185,15 @@ public class Database {
                 for (String eachseat : seatChar) {
                     System.out.println(eachseat);
 
-                    String[] eachSeatChar = eachseat.split(",");
-                    int row = Integer.valueOf(String.valueOf(eachSeatChar[0]));;
-                    char col = eachSeatChar[1].charAt(0);
+                    if (!eachseat.equals("null")) {
 
-                    System.out.println("row: " + row + " col: " + col);
-                    reserve.reserveSeat(new Row(row), new Column(col));
+                        String[] eachSeatChar = eachseat.split(",");
+                        int row = Integer.valueOf(String.valueOf(eachSeatChar[0]));;
+                        char col = eachSeatChar[1].charAt(0);
+
+                        System.out.println("row: " + row + " col: " + col);
+                        reserve.reserveSeat(new Row(row), new Column(col));
+                    }
                 }
             }
         } catch (SQLException ex) {
@@ -219,12 +223,15 @@ public class Database {
                 for (String eachseat : seatChar) {
                     System.out.println(eachseat);
 
-                    String[] eachSeatChar = eachseat.split(",");
-                    int row = Integer.valueOf(String.valueOf(eachSeatChar[0]));;
-                    char col = eachSeatChar[1].charAt(0);
+                    if (!eachseat.equals("null")) {
 
-                    System.out.println("row: " + row + " col: " + col);
-                    reserve.reserveSeat(new Row(row), new Column(col));
+                        String[] eachSeatChar = eachseat.split(",");
+                        int row = Integer.valueOf(String.valueOf(eachSeatChar[0]));;
+                        char col = eachSeatChar[1].charAt(0);
+
+                        System.out.println("row: " + row + " col: " + col);
+                        reserve.reserveSeat(new Row(row), new Column(col));
+                    }
                 }
             }
         } catch (SQLException ex) {

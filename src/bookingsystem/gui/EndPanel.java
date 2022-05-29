@@ -124,6 +124,8 @@ public class EndPanel extends JPanel {
                     busData += seat.trim().replace("(", "").replace(")", "") + " : ";
                 }
                 busData = busData.substring(0, busData.length() - 3);
+            } else {
+                busData = null;
             }
 
             if (!(Cart.boatCart.isEmpty())) {
@@ -131,6 +133,8 @@ public class EndPanel extends JPanel {
                     boatData += seat.trim().replace("(", "").replace(")", "") + " : ";
                 }
                 boatData = boatData.substring(0, boatData.length() - 3);
+            } else {
+                boatData = null;
             }
 
             if (!(Cart.tramCart.isEmpty())) {

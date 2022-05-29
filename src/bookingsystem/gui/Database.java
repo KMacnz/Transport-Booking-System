@@ -25,17 +25,14 @@ public class Database {
 //            statement.executeUpdate("DROP TABLE userInfo");
             if (!checkTableExisting("userInfo")) {
                 statement.executeUpdate("CREATE TABLE userInfo(userid INTEGER, bus VARCHAR(100), boat VARCHAR(100), tram VARCHAR(100))");
-                System.out.println("Create Table userInfo");
             }
 
             statement.executeUpdate("INSERT INTO userInfo VALUES(123456, '4,D : 6,B', '7,F', '8,B : 5,C')");
             statement.executeUpdate("INSERT INTO userInfo VALUES(987654, '2,A : 2,C', '2,B : 3,C : 6,A', '2,A : 3,B')");
-            System.out.println("Insert data");
 
             statement.close();
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
         }
     }
 
@@ -77,7 +74,6 @@ public class Database {
             ResultSet rs = statement.executeQuery("SELECT userid FROM userInfo");
             while (rs.next()) {
                 String userNum = rs.getString("userid");
-                System.out.println("ID " + userNum);
                 exists = (Integer.valueOf(userNum) == id);
             }
             statement.close();
@@ -136,19 +132,15 @@ public class Database {
             reserve = new Reserve(seatLayout);
 
             Statement statement = conn.createStatement();
-
             ResultSet rs = statement.executeQuery("SELECT bus FROM userInfo");
 
             while (rs.next()) {
                 String userbus = rs.getString("bus");
 
-                System.out.println("Row: " + userbus);
-
                 String[] seatChar = userbus.split(": ");
                 for (String eachseat : seatChar) {
 
                     if (!eachseat.equals("null")) {
-
                         String[] eachSeatChar = eachseat.split(",");
                         int row = Integer.valueOf(String.valueOf(eachSeatChar[0]));;
                         char col = eachSeatChar[1].charAt(0);
@@ -173,25 +165,19 @@ public class Database {
             reserve = new Reserve(seatLayout);
 
             Statement statement = conn.createStatement();
-
             ResultSet rs = statement.executeQuery("SELECT boat FROM userInfo");
 
             while (rs.next()) {
                 String userboat = rs.getString("boat");
 
-                System.out.println("Row: " + userboat);
-
                 String[] seatChar = userboat.split(": ");
                 for (String eachseat : seatChar) {
-                    System.out.println(eachseat);
 
                     if (!eachseat.equals("null")) {
-
                         String[] eachSeatChar = eachseat.split(",");
                         int row = Integer.valueOf(String.valueOf(eachSeatChar[0]));;
                         char col = eachSeatChar[1].charAt(0);
 
-                        System.out.println("row: " + row + " col: " + col);
                         reserve.reserveSeat(new Row(row), new Column(col));
                     }
                 }
@@ -211,25 +197,19 @@ public class Database {
             reserve = new Reserve(seatLayout);
 
             Statement statement = conn.createStatement();
-
             ResultSet rs = statement.executeQuery("SELECT tram FROM userInfo");
 
             while (rs.next()) {
                 String usertram = rs.getString("tram");
 
-                System.out.println("Row: " + usertram);
-
                 String[] seatChar = usertram.split(": ");
                 for (String eachseat : seatChar) {
-                    System.out.println(eachseat);
 
                     if (!eachseat.equals("null")) {
-
                         String[] eachSeatChar = eachseat.split(",");
                         int row = Integer.valueOf(String.valueOf(eachSeatChar[0]));;
                         char col = eachSeatChar[1].charAt(0);
 
-                        System.out.println("row: " + row + " col: " + col);
                         reserve.reserveSeat(new Row(row), new Column(col));
                     }
                 }
@@ -244,26 +224,8 @@ public class Database {
         try {
             Statement statement = conn.createStatement();
             statement.executeUpdate("INSERT INTO userInfo VALUES(" + id + ", '" + busdata + "', '" + boatdata + "', '" + tramdata + "')");
-
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    public void seeData() {
-        try {
-            Statement statement = conn.createStatement();
-
-            ResultSet rs = statement.executeQuery("SELECT * FROM userInfo");
-
-            while (rs.next()) {
-                int userNum = rs.getInt("userid");
-                String userbus = rs.getString("bus");
-                String userboat = rs.getString("boat");
-                String usertram = rs.getString("tram");
-
-                System.out.println("ID: " + userNum + " Bus: " + userbus + " Boat: " + userboat + " Tram: " + usertram);
-            }
+            System.out.println("Reservation Saved");
+            
         } catch (SQLException ex) {
             System.out.println(ex);
         }

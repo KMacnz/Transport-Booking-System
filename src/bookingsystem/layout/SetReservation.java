@@ -1,7 +1,6 @@
 package bookingsystem.layout;
 
-import bookingsystem.util.Cart;
-import bookingsystem.file.VehicleFiles;
+import bookingsystem.Cart;
 import bookingsystem.gui.Database;
 
 public class SetReservation {
@@ -12,7 +11,6 @@ public class SetReservation {
     static public String busBooking;
     static public String boatBooking;
     static public String tramBooking;
-    VehicleFiles vehicleFiles = new VehicleFiles();
 
     //goes to vehicle files and gets my seats from the files and stores them at the start of the project
     public void setUpReservations() {

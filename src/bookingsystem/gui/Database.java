@@ -23,13 +23,10 @@ public class Database {
 
             //REMOVE ONCE DONE
 //            statement.executeUpdate("DROP TABLE userInfo");
+
             if (!checkTableExisting("userInfo")) {
-                statement.executeUpdate("CREATE TABLE userInfo(userid INTEGER, bus VARCHAR(100), boat VARCHAR(100), tram VARCHAR(100))");
+                statement.executeUpdate("CREATE TABLE userInfo(userid INTEGER, bus VARCHAR(100), boat VARCHAR(150), tram VARCHAR(100))");
             }
-
-            statement.executeUpdate("INSERT INTO userInfo VALUES(123456, '4,D : 6,B', '7,F', '8,B : 5,C')");
-            statement.executeUpdate("INSERT INTO userInfo VALUES(987654, '2,A : 2,C', '2,B : 3,C : 6,A', '2,A : 3,B')");
-
             statement.close();
 
         } catch (SQLException ex) {

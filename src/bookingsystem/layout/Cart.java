@@ -1,4 +1,4 @@
-package bookingsystem.util;
+package bookingsystem;
 
 import bookingsystem.layout.SetReservation;
 import java.util.ArrayList;

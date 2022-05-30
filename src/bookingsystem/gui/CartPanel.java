@@ -1,6 +1,6 @@
 package bookingsystem.gui;
 
-import bookingsystem.util.Cart;
+import bookingsystem.Cart;
 import java.awt.*;
 import javax.swing.*;
 

@@ -23,7 +23,7 @@ public class Database {
 
             //REMOVE ONCE DONE
 //            statement.executeUpdate("DROP TABLE userInfo");
-
+            // check if table exists
             if (!checkTableExisting("userInfo")) {
                 statement.executeUpdate("CREATE TABLE userInfo(userid INTEGER, bus VARCHAR(100), boat VARCHAR(150), tram VARCHAR(100))");
             }
@@ -52,6 +52,7 @@ public class Database {
         return exists;
     }
 
+    // close the database connection
     public void close() {
         try {
             if (conn != null) {
@@ -62,6 +63,7 @@ public class Database {
         }
     }
 
+    // go through the database and check the generated id doesnt match another users one
     private boolean checkID(int id) {
         boolean exists = false;
 
@@ -80,6 +82,7 @@ public class Database {
         return exists;
     }
 
+    // generate the random number
     public int getNumber() {
         Random rand = new Random();
         id = rand.nextInt(1000000 - 100000) + 100000;
@@ -91,6 +94,7 @@ public class Database {
         return id;
     }
 
+    // print all the databases info if the id entered matches an id on the table
     public void printRecipt(int oldID) {
 
         try {
@@ -138,10 +142,12 @@ public class Database {
                 for (String eachseat : seatChar) {
 
                     if (!eachseat.equals("null")) {
+                        // splits the string up so row holds the rows and col holds the columns
                         String[] eachSeatChar = eachseat.split(",");
-                        int row = Integer.valueOf(String.valueOf(eachSeatChar[0]));;
+                        int row = Integer.valueOf(String.valueOf(eachSeatChar[0]));
                         char col = eachSeatChar[1].charAt(0);
 
+                        // reserve the seats 
                         reserve.reserveSeat(new Row(row), new Column(col));
                     }
                 }
@@ -171,10 +177,12 @@ public class Database {
                 for (String eachseat : seatChar) {
 
                     if (!eachseat.equals("null")) {
+                        // splits the string up so row holds the rows and col holds the columns
                         String[] eachSeatChar = eachseat.split(",");
                         int row = Integer.valueOf(String.valueOf(eachSeatChar[0]));;
                         char col = eachSeatChar[1].charAt(0);
 
+                        // reserve the seats 
                         reserve.reserveSeat(new Row(row), new Column(col));
                     }
                 }
@@ -203,10 +211,12 @@ public class Database {
                 for (String eachseat : seatChar) {
 
                     if (!eachseat.equals("null")) {
+                        // splits the string up so row holds the rows and col holds the columns
                         String[] eachSeatChar = eachseat.split(",");
                         int row = Integer.valueOf(String.valueOf(eachSeatChar[0]));;
                         char col = eachSeatChar[1].charAt(0);
 
+                        // reserve the seats 
                         reserve.reserveSeat(new Row(row), new Column(col));
                     }
                 }
@@ -217,12 +227,13 @@ public class Database {
         return reserve;
     }
 
+    // save the user data into the database when saved is clicked
     public void saveData(String busdata, String boatdata, String tramdata) {
         try {
             Statement statement = conn.createStatement();
             statement.executeUpdate("INSERT INTO userInfo VALUES(" + id + ", '" + busdata + "', '" + boatdata + "', '" + tramdata + "')");
             System.out.println("Reservation Saved");
-            
+
         } catch (SQLException ex) {
             System.out.println(ex);
         }

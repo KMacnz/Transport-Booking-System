@@ -6,7 +6,8 @@ import bookingsystem.layout.SetReservation;
 import java.awt.*;
 import javax.swing.*;
 
-public class TramBookingPanel extends JPanel{
+public class TramBookingPanel extends JPanel {
+
     private final DrawPanel drawPanel;
     public JButton[][] eachSeat;
     private final GridBagConstraints grid = new GridBagConstraints();
@@ -39,6 +40,7 @@ public class TramBookingPanel extends JPanel{
                 int row = j + 1;
                 String a = "Seat: (" + col + ", " + row + ")";
 
+                // set reserved seats to unclickable
                 if (SetReservation.reserveTram.isReserved(new Row(row), new Column(col))) {
                     eachSeat[i][j].setEnabled(false);
                     eachSeat[i][j].setOpaque(false);
@@ -129,7 +131,7 @@ public class TramBookingPanel extends JPanel{
             StartPanel.cartPanel.updateTxt();
             StartPanel.cartPanel.setVisible(true);
         });
-        
+
         seatPanel.add(drawPanel);
         seatPanel.add(Box.createHorizontalStrut(50));
         bookerPanel.add(seatTxtFld);
@@ -155,6 +157,7 @@ public class TramBookingPanel extends JPanel{
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
 
+            // set size for seats
             for (int i = 0; i < eachSeat.length; i++) {
                 for (int j = 0; j < eachSeat[i].length; j++) {
                     eachSeat[i][j].setBounds(i * 42, j * 42, 45, 45);

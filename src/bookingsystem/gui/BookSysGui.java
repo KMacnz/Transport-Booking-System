@@ -27,17 +27,21 @@ public class BookSysGui extends JFrame {
     }
 
     public static void main(String args[]) {
+        // connect and setup database
         Database dbManager = new Database();
         dbManager.dbsetup();
         System.out.println("Database setup complete");
 
+        // get seats from database and reserve them
         SetReservation booking = new SetReservation();
         booking.setUpReservations();
         System.out.println("Reservation setup complete");
 
+        // get user id that doesnt exist already
         userID = dbManager.getNumber();
         System.out.println("ID: " + userID);
 
+        // start up the gui
         BookSysGui bsgui = new BookSysGui();
         bsgui.setVisible(true);
     }

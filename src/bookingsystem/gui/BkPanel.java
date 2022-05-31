@@ -10,6 +10,7 @@ public class BkPanel extends JPanel {
     public BkPanel() {
         this.image = new ImageIcon("./resources/image/logo.png").getImage();
     }
+
     // Draw the background of this panel.
     @Override
     public void paintComponent(Graphics g) {

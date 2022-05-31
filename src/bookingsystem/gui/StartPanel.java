@@ -111,7 +111,6 @@ public class StartPanel extends JPanel {
             cartPanel = new CartPanel();
             add(cartPanel);
             cartPanel.setVisible(true);
-
         });
 
         // Quit Button

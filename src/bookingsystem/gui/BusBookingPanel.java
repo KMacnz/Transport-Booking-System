@@ -40,6 +40,7 @@ public class BusBookingPanel extends JPanel {
                 int row = j + 1;
                 String a = "Seat: (" + col + ", " + row + ")";
 
+                // set reserved seats to unclickable
                 if (SetReservation.reserveBus.isReserved(new Row(row), new Column(col))) {
                     eachSeat[i][j].setEnabled(false);
                     eachSeat[i][j].setOpaque(false);
@@ -156,6 +157,7 @@ public class BusBookingPanel extends JPanel {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
 
+            // set size for seats
             for (int i = 0; i < eachSeat.length; i++) {
                 for (int j = 0; j < eachSeat[i].length; j++) {
                     eachSeat[i][j].setBounds(i * 42, j * 42, 45, 45);

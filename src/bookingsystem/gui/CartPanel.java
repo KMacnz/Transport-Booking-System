@@ -7,7 +7,6 @@ import javax.swing.*;
 public class CartPanel extends JPanel {
 
     public JTextField reciptTxtFld;
-
     private JTextArea cartTxtFld;
 
     GridBagConstraints grid = new GridBagConstraints();
@@ -60,6 +59,7 @@ public class CartPanel extends JPanel {
         updateTxt();
     }
 
+    // if the carts contains items, update the txtfld to show these
     public void updateTxt() {
         if (!(Cart.busCart.isEmpty() && Cart.boatCart.isEmpty() && Cart.tramCart.isEmpty())) {
             cartTxtFld.setText("");

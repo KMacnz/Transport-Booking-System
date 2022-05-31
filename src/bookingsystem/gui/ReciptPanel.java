@@ -3,10 +3,10 @@ package bookingsystem.gui;
 import java.awt.*;
 import javax.swing.*;
 
-public class ReciptPanel extends JPanel{
-    
+public class ReciptPanel extends JPanel {
+
     public JTextArea reciptTxtFld;
-    
+
     GridBagConstraints grid = new GridBagConstraints();
 
     public ReciptPanel() {
@@ -16,7 +16,7 @@ public class ReciptPanel extends JPanel{
         setOpaque(false);
         reciptPanel.setPreferredSize(new Dimension(525, 480));
         this.add(reciptPanel);
-        
+
         //ID Label 
         JLabel idLabel = new JLabel("Enter Your Previous ID Here:");
         grid.gridx = 1;
@@ -26,7 +26,7 @@ public class ReciptPanel extends JPanel{
         idLabel.setFont(new java.awt.Font("Kannada MN", 1, 24));
         idLabel.setForeground(new java.awt.Color(0, 0, 0));
         idLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        
+
         // User Input 
         JTextField userTypeFld = new JTextField();
         userTypeFld.setFont(new java.awt.Font("Monospaced", 0, 15));
@@ -36,22 +36,22 @@ public class ReciptPanel extends JPanel{
         grid.gridx = 1;
         grid.gridy = 2;
         reciptPanel.add(userTypeFld, grid);
-        
+
         // Recipt gets printed
         reciptTxtFld = new JTextArea();
         reciptTxtFld.setEditable(false);
         reciptTxtFld.setFont(new java.awt.Font("Monospaced", 0, 15));
         reciptTxtFld.setPreferredSize(new Dimension(400, 150));
         reciptTxtFld.setLineWrap(true);
-        
+
         grid.gridx = 1;
         grid.gridy = 3;
         reciptPanel.add(reciptTxtFld, grid);
-        
+
         JPanel dirrectionPanel = new JPanel();
         dirrectionPanel.setOpaque(false);
         dirrectionPanel.setLayout(new FlowLayout());
-        
+
         // ID login Button
         ImageIcon goimg = new ImageIcon("./resources/image/go.png");
         JButton goBtn = new JButton("Unlock Recipt", goimg);
@@ -59,7 +59,7 @@ public class ReciptPanel extends JPanel{
         goBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
         goBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         dirrectionPanel.add(goBtn);
-        
+
         // Back Button
         ImageIcon backimg = new ImageIcon("./resources/image/back.png");
         JButton backBtn = new JButton("Back", backimg);
@@ -72,23 +72,22 @@ public class ReciptPanel extends JPanel{
             StartPanel.reciptPanel.setVisible(false);
             StartPanel.startPanel.setVisible(true);
         });
-        
+
         grid.gridx = 1;
         grid.gridy = 4;
         reciptPanel.add(dirrectionPanel, grid);
-        
-        
+
+        // check the entered id is a vaild number and then compare it to the database
         goBtn.addActionListener(e -> {
             Database dbManager = new Database();
             int oldID = 0;
             try {
-            oldID = Integer.valueOf(userTypeFld.getText().trim());
-            
-            dbManager.printRecipt(oldID);
-            
+                oldID = Integer.valueOf(userTypeFld.getText().trim());
+                dbManager.printRecipt(oldID);
+
             } catch (Exception ex) {
                 reciptTxtFld.setText("Make sure your ID contains ONLY numbers");
             }
-        }); 
+        });
     }
 }

@@ -36,6 +36,7 @@ public class EndPanel extends JPanel {
         cartTxtFld.setOpaque(false);
         cartTxtFld.setVisible(false);
 
+        // update cart txtfld to show cart
         cartTxtFld.setText("Your ID is: " + BookSysGui.userID + "\n\n");
         if (!(Cart.busCart.isEmpty())) {
             cartTxtFld.append("Bus: " + Cart.busCart.toString() + "\n\n");
@@ -119,6 +120,7 @@ public class EndPanel extends JPanel {
             String boatData = "";
             String tramData = "";
 
+            // trim the array so that its saved as a string in the correct format for my database
             if (!(Cart.busCart.isEmpty())) {
                 for (String seat : Cart.busCart) {
                     busData += seat.trim().replace("(", "").replace(")", "") + " : ";
@@ -146,6 +148,7 @@ public class EndPanel extends JPanel {
                 tramData = null;
             }
 
+            // save it to the database
             Database database = new Database();
             database.saveData(busData, boatData, tramData);
         });

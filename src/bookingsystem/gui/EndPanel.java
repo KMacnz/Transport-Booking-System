@@ -18,7 +18,7 @@ public class EndPanel extends JPanel {
         this.add(endPanel);
 
         //Question Label 
-        JLabel saveLabel = new JLabel("Confirm your Booking?");
+        JLabel saveLabel = new JLabel("-Thank you for your vist-");
         grid.gridx = 1;
         grid.gridy = 1;
         grid.ipady = 10;
@@ -70,7 +70,7 @@ public class EndPanel extends JPanel {
             StartPanel.endPanel.setVisible(false);
             StartPanel.startPanel.setVisible(true);
         });
-        
+
         // Restart Button
         ImageIcon resetimg = new ImageIcon("./resources/image/restart.png");
         JButton resetBtn = new JButton("Restart Booking", resetimg);
@@ -83,7 +83,7 @@ public class EndPanel extends JPanel {
             Cart.busCart.clear();
             Cart.boatCart.clear();
             Cart.tramCart.clear();
-            
+
             BookSysGui.current.dispose();
             BookSysGui.setUpSystem();
         });
@@ -99,15 +99,17 @@ public class EndPanel extends JPanel {
         if (!(Cart.busCart.isEmpty() && Cart.boatCart.isEmpty() && Cart.tramCart.isEmpty())) {
             btnPanel.add(saveBtn);
             cartTxtFld.setVisible(true);
+            saveLabel.setVisible(true);
+            saveLabel.setText("Confirm your Booking?");
         }
-        // if carts have an item in them make the save button visible
-        if (!(Cart.busCart.isEmpty() && Cart.boatCart.isEmpty() && Cart.tramCart.isEmpty())) {
-            btnPanel.add(saveBtn);
-            cartTxtFld.setVisible(true);
-        }
+//        // if carts have an item in them make the save button visible
+//        if (!(Cart.busCart.isEmpty() && Cart.boatCart.isEmpty() && Cart.tramCart.isEmpty())) {
+//            btnPanel.add(saveBtn);
+//            cartTxtFld.setVisible(true);
+//        }
 
         // Quit Button
-        ImageIcon quitimg = new ImageIcon("./resources/image/noSave.png");
+        ImageIcon quitimg = new ImageIcon("./resources/image/quit.png");
         JButton noSaveBtn = new JButton("Quit", quitimg);
         noSaveBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
         noSaveBtn.setHorizontalTextPosition(SwingConstants.CENTER);

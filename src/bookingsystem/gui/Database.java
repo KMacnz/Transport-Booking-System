@@ -226,13 +226,52 @@ public class Database {
         }
         return reserve;
     }
-
-    // save the user data into the database when saved is clicked
-    public void saveData(String busdata, String boatdata, String tramdata) {
+    
+    // save the id data into the database when saved is clicked
+    public void saveID() {
         try {
             Statement statement = conn.createStatement();
-            statement.executeUpdate("INSERT INTO userInfo VALUES(" + id + ", '" + busdata + "', '" + boatdata + "', '" + tramdata + "')");
-            System.out.println("Reservation Saved");
+            statement.executeUpdate("INSERT INTO userInfo (userid) VALUES(" + id + ")");
+            System.out.println("ID Saved");
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    // save the bus data into the database when saved is clicked
+    public void saveBus(String busdata) {
+        try {
+            Statement statement = conn.createStatement();
+//            statement.executeUpdate("INSERT INTO userInfo (bus) VALUES('" + busdata + "') WHERE userid = " + id);
+//            String sql = "UPDATE userInfo SET bus = '" + busdata + "' WHERE userid = " + id;
+//            System.out.println(sql);
+            statement.executeUpdate("UPDATE userInfo SET bus = '" + busdata + "' WHERE userid = " + id);
+            System.out.println("Bus Saved");
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    // save the boat data into the database when saved is clicked
+    public void saveBoat(String boatdata) {
+        try {
+            Statement statement = conn.createStatement();
+            statement.executeUpdate("UPDATE userInfo SET boat = '" + boatdata + "' WHERE userid = " + id);
+            System.out.println("Boat Saved");
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    // save the tram data into the database when saved is clicked
+    public void saveTram(String tramdata) {
+        try {
+            Statement statement = conn.createStatement();
+            statement.executeUpdate("UPDATE userInfo SET tram = '" + tramdata + "' WHERE userid = " + id);
+            System.out.println("Tram Saved");
 
         } catch (SQLException ex) {
             System.out.println(ex);

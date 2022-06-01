@@ -150,7 +150,10 @@ public class EndPanel extends JPanel {
 
             // save it to the database
             Database database = new Database();
-            database.saveData(busData, boatData, tramData);
+            database.saveID();
+            database.saveBus(busData);
+            database.saveBoat(boatData);
+            database.saveTram(tramData);
         });
     }
 }

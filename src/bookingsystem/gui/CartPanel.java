@@ -18,6 +18,10 @@ public class CartPanel extends JPanel {
         setOpaque(false);
         cartPanel.setPreferredSize(new Dimension(525, 480));
         this.add(cartPanel);
+        
+        JPanel btnPanel = new JPanel();
+        btnPanel.setLayout(new FlowLayout());
+        btnPanel.setOpaque(false);
 
         //Cart Label 
         JLabel cartLabel = new JLabel("Your Cart");
@@ -52,10 +56,27 @@ public class CartPanel extends JPanel {
             StartPanel.startPanel.setVisible(true);
         });
 
+        // Restart Button
+        ImageIcon resetimg = new ImageIcon("./resources/image/restartsmall.png");
+        JButton resetBtn = new JButton("Restart Booking", resetimg);
+        resetBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        resetBtn.setHorizontalTextPosition(SwingConstants.CENTER);
+        resetBtn.setBorderPainted(false);
+        // add listener
+        resetBtn.addActionListener(e -> {
+            BookSysGui.setUpSystem();
+            Cart.busCart.clear();
+            Cart.boatCart.clear();
+            Cart.tramCart.clear();
+        });
+
         grid.gridx = 1;
         grid.gridy = 3;
-        cartPanel.add(backBtn, grid);
-
+        cartPanel.add(btnPanel, grid);
+        
+        btnPanel.add(resetBtn);
+        btnPanel.add(backBtn);
+        
         updateTxt();
     }
 

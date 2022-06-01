@@ -70,6 +70,23 @@ public class EndPanel extends JPanel {
             StartPanel.endPanel.setVisible(false);
             StartPanel.startPanel.setVisible(true);
         });
+        
+        // Restart Button
+        ImageIcon resetimg = new ImageIcon("./resources/image/restart.png");
+        JButton resetBtn = new JButton("Restart Booking", resetimg);
+        resetBtn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        resetBtn.setHorizontalTextPosition(SwingConstants.CENTER);
+        resetBtn.setBorderPainted(false);
+        btnPanel.add(resetBtn);
+        // add listener
+        resetBtn.addActionListener(e -> {
+            Cart.busCart.clear();
+            Cart.boatCart.clear();
+            Cart.tramCart.clear();
+            
+            BookSysGui.current.dispose();
+            BookSysGui.setUpSystem();
+        });
 
         // Save Button
         ImageIcon saveimg = new ImageIcon("./resources/image/save.png");
@@ -78,6 +95,11 @@ public class EndPanel extends JPanel {
         saveBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         saveBtn.setBorderPainted(false);
 
+        // if carts have an item in them make the save button visible
+        if (!(Cart.busCart.isEmpty() && Cart.boatCart.isEmpty() && Cart.tramCart.isEmpty())) {
+            btnPanel.add(saveBtn);
+            cartTxtFld.setVisible(true);
+        }
         // if carts have an item in them make the save button visible
         if (!(Cart.busCart.isEmpty() && Cart.boatCart.isEmpty() && Cart.tramCart.isEmpty())) {
             btnPanel.add(saveBtn);

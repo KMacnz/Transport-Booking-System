@@ -6,6 +6,7 @@ import bookingsystem.layout.SetReservation;
 public class BookSysGui extends JFrame {
 
     static int userID;
+    static BookSysGui current;
 
     public BookSysGui() {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -26,7 +27,7 @@ public class BookSysGui extends JFrame {
         bkPanel.add(startGui);
     }
 
-    public static void main(String args[]) {
+    public static void setUpSystem() {
         // connect and setup database
         Database dbManager = new Database();
         dbManager.dbsetup();
@@ -35,14 +36,18 @@ public class BookSysGui extends JFrame {
         // get seats from database and reserve them
         SetReservation booking = new SetReservation();
         booking.setUpReservations();
-        System.out.println("Reservation setup complete");
+        System.out.println("Reservation setup complete\n");
 
         // get user id that doesnt exist already
         userID = dbManager.getNumber();
-        System.out.println("ID: " + userID);
 
         // start up the gui
         BookSysGui bsgui = new BookSysGui();
         bsgui.setVisible(true);
+        current = bsgui;
+    }
+    
+    public static void main(String args[]) {
+        setUpSystem();
     }
 }

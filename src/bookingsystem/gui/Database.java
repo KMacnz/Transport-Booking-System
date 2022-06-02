@@ -21,8 +21,6 @@ public class Database {
             conn = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
             Statement statement = conn.createStatement();
 
-            //REMOVE ONCE DONE
-//            statement.executeUpdate("DROP TABLE userInfo");
             // check if table exists
             if (!checkTableExisting("userInfo")) {
                 statement.executeUpdate("CREATE TABLE userInfo(userid INTEGER, bus VARCHAR(100), boat VARCHAR(150), tram VARCHAR(100))");
